@@ -1,0 +1,9 @@
+name: EldinLandPlugin
+version: 1.0.0
+author: BranFlakes
+main: com.branwidth.EldinLand.Main
+website: www.branwidth.com
+commands:
+      Land:
+               description: Shows the player how much land they own
+               usage: /land

@@ -1,0 +1,10 @@
+# Enter in MySQL Information here
+# Plugin is for use with the World Of Eldin MySQL Database backend
+# Other backend systems will not work
+
+MySQL:
+  location: 127.0.0.1
+  port: 3306
+  user: user
+  password: password
+  db: dbname
