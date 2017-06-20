@@ -7,14 +7,14 @@ import java.io.File;
 public class Main extends JavaPlugin {
 
     @Override
-    public void onEnable(){
+    public void onEnable() {
         // Some text here for starting the plugin
         getLogger().info("Enabled EldinLand");
         //Creating the config file for the plugin
         createConfig();
+        MySQL.connect();
         // Specifying commands for the plugin
         getCommand("Land").setExecutor(new Land());
-
     }
 
     private void createConfig() {
@@ -41,11 +41,11 @@ public class Main extends JavaPlugin {
         return Main.getPlugin(Main.class);
     }
 
-
     @Override
     public void onDisable(){
         // Some text here for stopping the plugin
         getLogger().info("Disabled EldinLand");
+        MySQL.disconnect();
     }
 
 
