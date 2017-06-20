@@ -6,6 +6,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import java.sql.*;
+import java.util.UUID;
 
 public class Land implements CommandExecutor {
 
@@ -13,7 +14,8 @@ public class Land implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
         Player p = (Player) sender;
-        String pName = sender.getName();
+//        String pName = sender.getName();
+        String pName = p.getUniqueId().toString().replace("-","");
 
         String wildLand,cityLand,netherLand,endLand,totalLand;
 
@@ -21,7 +23,7 @@ public class Land implements CommandExecutor {
             try {
                 //            Connection con = DriverManager.getConnection(dbUrl);
                 //            Statement getLand = con.createStatement();
-                PreparedStatement ps = MySQL.getConnection().prepareStatement("select * from players WHERE username='" + pName + "'");
+                PreparedStatement ps = MySQL.getConnection().prepareStatement("select * from players WHERE uuid='" + pName + "'");
                 //            ResultSet rs = MySQL.getConnection().executeQuery("select * from players WHERE username='" + pName +"'");
                 ResultSet rs = ps.executeQuery();
                 while (rs.next()) {
