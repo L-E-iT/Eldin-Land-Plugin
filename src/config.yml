@@ -8,3 +8,6 @@ MySQL:
   user: user
   password: password
   db: dbname
+
+DistanceConfig:
+  Distance: 50

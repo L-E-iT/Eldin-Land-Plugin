@@ -2,6 +2,7 @@ name: EldinLandPlugin
 version: 1.0.0
 author: BranFlakes
 main: com.branwidth.EldinLand.Main
+depend: [Residence]
 website: www.branwidth.com
 commands:
       Land:

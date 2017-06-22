@@ -1,39 +1,65 @@
 package com.branwidth.EldinLand;
 
+import org.bukkit.configuration.InvalidConfigurationException;
+import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
-
 import java.io.File;
+import java.io.IOException;
 
 public class Main extends JavaPlugin {
+
+    private FileConfiguration plot;
+    private File plotf;
 
     @Override
     public void onEnable() {
         // Some text here for starting the plugin
         getLogger().info("Enabled EldinLand");
         //Creating the config file for the plugin
-        createConfig();
+        createFiles();
         MySQL.connect();
         // Specifying commands for the plugin
         getCommand("Land").setExecutor(new Land());
+        getServer().getPluginManager().registerEvents(new LandListener(), this);
     }
 
-    private void createConfig() {
-        try {
-            if (!getDataFolder().exists()) {
-                getDataFolder().mkdirs();
-            }
-            File file = new File(getDataFolder(), "config.yml");
-            if (!file.exists()) {
-                getLogger().info("Config.yml not found, creating!");
-                saveDefaultConfig();
-            } else {
-                getLogger().info("Config.yml for XpExchange found, loading!");
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
 
+    FileConfiguration getPlotConfig() {
+        return this.plot;
+    }
+
+    void savePlotData() {
+        try {
+            getPlotConfig().save(plotf);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
 
+    }
+
+    private void createFiles() {
+
+        File configf = new File(getDataFolder(), "config.yml");
+        plotf = new File(getDataFolder(), "plot.yml");
+
+        if (!configf.exists()) {
+            configf.getParentFile().mkdirs();
+            saveResource("config.yml", false);
+        }
+        if (!plotf.exists()) {
+            plotf.getParentFile().mkdirs();
+            saveResource("plot.yml", false);
+        }
+
+        FileConfiguration config = new YamlConfiguration();
+        plot = new YamlConfiguration();
+        try {
+            config.load(configf);
+            plot.load(plotf);
+        } catch (IOException | InvalidConfigurationException e) {
+            e.printStackTrace();
+        }
     }
 
     // Creating a getter for the Main class
