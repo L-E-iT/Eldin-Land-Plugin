@@ -21,7 +21,8 @@ public class Main extends JavaPlugin {
         MySQL.connect();
         // Specifying commands for the plugin
         getCommand("Land").setExecutor(new Land());
-        getServer().getPluginManager().registerEvents(new LandListener(), this);
+        getServer().getPluginManager().registerEvents(new LandCreateListener(), this);
+        getServer().getPluginManager().registerEvents(new LandRemoveListener(), this);
     }
 
 

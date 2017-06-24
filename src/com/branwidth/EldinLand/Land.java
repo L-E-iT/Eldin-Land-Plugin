@@ -14,19 +14,17 @@ public class Land implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
         Player p = (Player) sender;
-//        String pName = sender.getName();
         String pName = p.getUniqueId().toString().replace("-","");
 
         String wildLand,cityLand,netherLand,endLand,totalLand;
 
         if (MySQL.isConnected()) {
             try {
-                //            Connection con = DriverManager.getConnection(dbUrl);
-                //            Statement getLand = con.createStatement();
+                // Prepare SQL statement
                 PreparedStatement ps = MySQL.getConnection().prepareStatement("select * from players WHERE uuid='" + pName + "'");
-                //            ResultSet rs = MySQL.getConnection().executeQuery("select * from players WHERE username='" + pName +"'");
                 ResultSet rs = ps.executeQuery();
                 while (rs.next()) {
+                    // Send land information to user
                     wildLand = Integer.toString(rs.getInt("wild_count"));
                     cityLand = Integer.toString(rs.getInt("city_count"));
                     netherLand = Integer.toString(rs.getInt("nether_count"));
