@@ -22,9 +22,7 @@ public class Main extends JavaPlugin {
         // Specifying commands for the plugin
         getCommand("Land").setExecutor(new Land());
         //Register Listeners
-        getServer().getPluginManager().registerEvents(new LandCreateListener(), this);
-        getServer().getPluginManager().registerEvents(new LandRemoveListener(), this);
-        getServer().getPluginManager().registerEvents(new LandOwnerChangeListener(), this);
+        getServer().getPluginManager().registerEvents(new DistanceListener(), this);
     }
 
 
