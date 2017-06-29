@@ -1,8 +1,6 @@
 package com.branwidth.EldinLand;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.*;
 
 class MySQL {
 
@@ -47,6 +45,13 @@ class MySQL {
 
     static Connection getConnection() {
         return conn;
+    }
+
+    static ResultSet getPlayerLand(String uuid) throws SQLException {
+        // get result set of a players land
+        PreparedStatement PSland = MySQL.getConnection().prepareStatement("select * from players WHERE uuid='" + uuid + "'");
+        ResultSet RSland = PSland.executeQuery();
+        return RSland;
     }
 
 }

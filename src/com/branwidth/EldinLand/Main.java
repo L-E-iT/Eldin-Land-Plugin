@@ -22,7 +22,7 @@ public class Main extends JavaPlugin {
         // Specifying commands for the plugin
         getCommand("Land").setExecutor(new Land());
         //Register Listeners
-        getServer().getPluginManager().registerEvents(new DistanceListener(), this);
+        getServer().getPluginManager().registerEvents(new PlotCreateListener(), this);
     }
 
 
