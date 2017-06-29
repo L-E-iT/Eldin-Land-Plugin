@@ -18,8 +18,10 @@ public class DistanceListener implements Listener {
     public void onCreationEvent(ResidenceCreationEvent event) {
 
         Player p = event.getPlayer();
+        Integer distance = Main.getPlugin().getConfig().getInt("DistanceConfig.Distance");
         CuboidArea newArea = event.getResidence().getMainArea();
-        CuboidArea area = resizeAreaForTownCheck(newArea);
+        // get new area as area with resize for config values
+        CuboidArea area = resizeAreaForTownCheck(newArea, distance);
 
         for (Map.Entry<String, ClaimedResidence> entry : Residence.getInstance().getResidenceManager().getResidences().entrySet()) {
             ClaimedResidence res = entry.getValue();
@@ -38,10 +40,13 @@ public class DistanceListener implements Listener {
                 }
             }
         }
+        if(event.isCancelled()){
+            // MySQL code
+
+        }
     }
 
-    private CuboidArea resizeAreaForTownCheck(CuboidArea newArea) {
-        int r = 16;
+    private CuboidArea resizeAreaForTownCheck(CuboidArea newArea, Integer r) {
         CuboidArea area = new CuboidArea();
         area.setHighLocation(newArea.getHighLoc().clone().add(r, r, r));
         area.setLowLocation(newArea.getLowLoc().clone().add(-r, -r, -r));
