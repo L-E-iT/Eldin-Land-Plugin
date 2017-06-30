@@ -11,3 +11,6 @@ MySQL:
 
 DistanceConfig:
   Distance: 50
+
+MessagesConfig:
+  PreMessage: §6[Eldin Land]

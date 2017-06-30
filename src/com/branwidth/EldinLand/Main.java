@@ -1,11 +1,9 @@
 package com.branwidth.EldinLand;
 
-import org.bukkit.configuration.InvalidConfigurationException;
-import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.configuration.file.YamlConfiguration;
+import com.branwidth.EldinLand.Listeners.PlotCreateListener;
+import com.branwidth.EldinLand.Listeners.PlotRemoveListener;
 import org.bukkit.plugin.java.JavaPlugin;
 import java.io.File;
-import java.io.IOException;
 
 public class Main extends JavaPlugin {
 
@@ -20,6 +18,7 @@ public class Main extends JavaPlugin {
         getCommand("Land").setExecutor(new Land());
         //Register Listeners
         getServer().getPluginManager().registerEvents(new PlotCreateListener(), this);
+        getServer().getPluginManager().registerEvents(new PlotRemoveListener(), this);
     }
 
 
@@ -34,7 +33,7 @@ public class Main extends JavaPlugin {
     }
 
     // Creating a getter for the Main class
-    static Main getPlugin() {
+    public static Main getPlugin() {
         return Main.getPlugin(Main.class);
     }
 

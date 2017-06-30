@@ -17,6 +17,9 @@ public class Land implements CommandExecutor {
         String pName = p.getUniqueId().toString().replace("-","");
 
         String wildLand,cityLand,netherLand,endLand,totalLand;
+        if (!MySQL.isConnected()) {
+            MySQL.connect();
+        }
 
         if (MySQL.isConnected()) {
             try {
