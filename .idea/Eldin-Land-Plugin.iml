@@ -10,17 +10,6 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../../spigot-1.11.2.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES>
-          <root url="jar://$MODULE_DIR$/../../spigot-1.11.2.jar!/" />
-        </SOURCES>
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library>
-        <CLASSES>
           <root url="file://$MODULE_DIR$/../../Spigot/Spigot-API" />
         </CLASSES>
         <JAVADOC />
@@ -28,6 +17,17 @@
           <root url="file://$MODULE_DIR$/../../Spigot/Spigot-API/src/main/java" />
           <root url="file://$MODULE_DIR$/../../Spigot/Spigot-API/src/main/javadoc" />
           <root url="file://$MODULE_DIR$/../../Spigot/Spigot-API/src/test/java" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../../spigot-1.12.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="jar://$MODULE_DIR$/../../spigot-1.12.jar!/" />
         </SOURCES>
       </library>
     </orderEntry>

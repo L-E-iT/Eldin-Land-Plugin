@@ -77,4 +77,12 @@ public class MySQL {
 
     }
 
+    public static void addPlayerCityLand() throws SQLException {
+
+    }
+
+    public static void addCityPlot() throws SQLException {
+
+    }
+
 }
