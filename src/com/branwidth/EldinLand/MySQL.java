@@ -70,4 +70,11 @@ public class MySQL {
         }
     }
 
+    public static void addPlayerWildLand(String pUUID, Long Count, String playerWorld) throws SQLException {
+        PreparedStatement ps = MySQL.getConnection().prepareStatement("UPDATE players SET " + playerWorld + " = " + Count +
+                " WHERE uuid = '" + pUUID + "'");
+        ps.executeUpdate();
+
+    }
+
 }

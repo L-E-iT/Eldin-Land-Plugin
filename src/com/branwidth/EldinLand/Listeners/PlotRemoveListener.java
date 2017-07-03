@@ -36,9 +36,7 @@ public class PlotRemoveListener implements Listener {
             while (RSland.next()) {
                 Long prevWildLand = RSland.getLong(playerWorld);
                 Long newWildLand = prevWildLand - plotArea;
-                PreparedStatement PSinsert = MySQL.getConnection().prepareStatement("UPDATE players SET " + playerWorld + " = " + newWildLand +
-                        " WHERE uuid = '" + pUUID + "'");
-                PSinsert.executeUpdate();
+                MySQL.addPlayerWildLand(pUUID, newWildLand, playerWorld);
                 p.sendMessage(preMessage + "§A Removed §6" + plotArea + "§A Tiles from " +  StringUtils.capitalize(playerWorldReplaced) + " land");
                 p.sendMessage(String.valueOf(preMessage + "§A New " + StringUtils.capitalize(playerWorldReplaced) + " Land Count: §6" + newWildLand));
             }

@@ -73,14 +73,11 @@ public class PlotCreateListener implements Listener {
                     // get area of plot
                     Long plotArea = newArea.getSize()/newArea.getYSize();
                     // get Wild tile values
-                    Double prevWildLand = RSselect.getDouble(playerWorld);
+                    Long prevWildLand = RSselect.getLong(playerWorld);
                     // get new value
-                    Double newWildLand = prevWildLand + plotArea;
+                    Long newWildLand = prevWildLand + plotArea;
                     // set MySQL statement
-                    PreparedStatement PSinsert = MySQL.getConnection().prepareStatement("UPDATE players SET " + playerWorld + " = " + newWildLand +
-                            " WHERE uuid = '" + pUUID + "'");
-                    // Execute statment
-                    PSinsert.executeUpdate();
+                    MySQL.addPlayerWildLand(pUUID, newWildLand, playerWorld);
                     ResultSet RSWildLand = MySQL.getPlayerLand(pUUID);
                     // Send player new wild land values
                     if (playerWorld != null) {
