@@ -71,7 +71,7 @@ public class PlotCreateListener implements Listener {
                 ResultSet RSselect = MySQL.getPlayerLand(pUUID);
                 while (RSselect.next()) {
                     // get area of plot
-                    Long plotArea = newArea.getSize()/newArea.getYSize();
+                    Long plotArea = newArea.getSize();
                     // get Wild tile values
                     Long prevWildLand = RSselect.getLong(playerWorld);
                     // get new value

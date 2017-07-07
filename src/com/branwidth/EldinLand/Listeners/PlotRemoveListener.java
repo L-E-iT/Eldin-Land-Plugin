@@ -21,7 +21,7 @@ public class PlotRemoveListener implements Listener {
 
         Player p = event.getPlayer();
         String pUUID = p.getUniqueId().toString().replace("-","");
-        long plotArea = event.getResidence().getMainArea().getSize()/event.getResidence().getMainArea().getYSize();
+        long plotArea = event.getResidence().getMainArea().getSize();
         String playerWorld = MySQL.getPlayerWorld(p.getWorld().getName());
         String playerWorldReplaced = playerWorld.replace("_count","");
         String preMessage = Main.getPlugin().getConfig().getString("MessagesConfig.PreMessage");
@@ -34,11 +34,13 @@ public class PlotRemoveListener implements Listener {
         }
         if (MySQL.isConnected()) {
             while (RSland.next()) {
-                Long prevWildLand = RSland.getLong(playerWorld);
-                Long newWildLand = prevWildLand - plotArea;
-                MySQL.addPlayerWildLand(pUUID, newWildLand, playerWorld);
-                p.sendMessage(preMessage + "§A Removed §6" + plotArea + "§A Tiles from " +  StringUtils.capitalize(playerWorldReplaced) + " land");
-                p.sendMessage(String.valueOf(preMessage + "§A New " + StringUtils.capitalize(playerWorldReplaced) + " Land Count: §6" + newWildLand));
+                if (p.getName().equals(event.getResidence().getOwner())) {
+                    Long prevWildLand = RSland.getLong(playerWorld);
+                    Long newWildLand = prevWildLand - plotArea;
+                    MySQL.addPlayerWildLand(pUUID, newWildLand, playerWorld);
+                    p.sendMessage(preMessage + "§A Removed §6" + plotArea + "§A Tiles from " + StringUtils.capitalize(playerWorldReplaced) + " land");
+                    p.sendMessage(String.valueOf(preMessage + "§A New " + StringUtils.capitalize(playerWorldReplaced) + " Land Count: §6" + newWildLand));
+                }
             }
 
 
