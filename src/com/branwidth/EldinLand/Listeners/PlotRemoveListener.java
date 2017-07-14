@@ -5,12 +5,10 @@ import com.bekvon.bukkit.residence.event.ResidenceDeleteEvent;
 import com.branwidth.EldinLand.Main;
 import com.branwidth.EldinLand.MySQL;
 import org.apache.commons.lang.StringUtils;
-import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -37,7 +35,7 @@ public class PlotRemoveListener implements Listener {
                 if (p.getName().equals(event.getResidence().getOwner())) {
                     Long prevWildLand = RSland.getLong(playerWorld);
                     Long newWildLand = prevWildLand - plotArea;
-                    MySQL.addPlayerWildLand(pUUID, newWildLand, playerWorld);
+                    MySQL.changePlayerWildLand(pUUID, newWildLand, playerWorld);
                     p.sendMessage(preMessage + "§A Removed §6" + plotArea + "§A Tiles from " + StringUtils.capitalize(playerWorldReplaced) + " land");
                     p.sendMessage(String.valueOf(preMessage + "§A New " + StringUtils.capitalize(playerWorldReplaced) + " Land Count: §6" + newWildLand));
                 }

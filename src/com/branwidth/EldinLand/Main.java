@@ -19,6 +19,8 @@ public class Main extends JavaPlugin {
         //Register Listeners
         getServer().getPluginManager().registerEvents(new PlotCreateListener(), this);
         getServer().getPluginManager().registerEvents(new PlotRemoveListener(), this);
+        getServer().getPluginManager().registerEvents(new PlotChangeSizeListener(), this);
+        getServer().getPluginManager().registerEvents(new PlotChangeOwnerListener(), this);
     }
 
 

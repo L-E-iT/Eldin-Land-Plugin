@@ -7,9 +7,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="03b4c01f-ce0a-4183-a572-e8a677c36180" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/branwidth/EldinLand/Listeners/PlotChangeOwnerListener.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/branwidth/EldinLand/Listeners/PlotChangeSizeListener.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/branwidth/EldinLand/Listeners/PlotCreateListener.java" afterPath="$PROJECT_DIR$/src/com/branwidth/EldinLand/Listeners/PlotCreateListener.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/branwidth/EldinLand/Listeners/PlotRemoveListener.java" afterPath="$PROJECT_DIR$/src/com/branwidth/EldinLand/Listeners/PlotRemoveListener.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/branwidth/EldinLand/Main.java" afterPath="$PROJECT_DIR$/src/com/branwidth/EldinLand/Main.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/branwidth/EldinLand/MySQL.java" afterPath="$PROJECT_DIR$/src/com/branwidth/EldinLand/MySQL.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -34,22 +38,46 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/branwidth/EldinLand/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="20" column="86" lean-forward="false" selection-start-line="20" selection-start-column="86" selection-end-line="20" selection-end-column="86" />
+            <state relative-caret-position="255">
+              <caret line="18" column="28" lean-forward="false" selection-start-line="18" selection-start-column="28" selection-end-line="18" selection-end-column="28" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PlotCreateListener.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/com/branwidth/EldinLand/Listeners/PlotCreateListener.java">
+      <file leaf-file-name="PlotChangeOwnerListener.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/com/branwidth/EldinLand/Listeners/PlotChangeOwnerListener.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1065">
-              <caret line="80" column="70" lean-forward="true" selection-start-line="80" selection-start-column="70" selection-end-line="80" selection-end-column="70" />
+            <state relative-caret-position="374">
+              <caret line="22" column="2" lean-forward="false" selection-start-line="22" selection-start-column="2" selection-end-line="22" selection-end-column="2" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <marker date="1499455683877" expanded="true" signature="2970:3004" ph="select * fro... players" />
-                <marker date="1499455683877" expanded="true" signature="2970:3018" ph="select * fro... players" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PlotChangeSizeListener.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/branwidth/EldinLand/Listeners/PlotChangeSizeListener.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="323">
+              <caret line="19" column="96" lean-forward="false" selection-start-line="19" selection-start-column="96" selection-end-line="19" selection-end-column="96" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PlotCreateListener.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/branwidth/EldinLand/Listeners/PlotCreateListener.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1326">
+              <caret line="78" column="80" lean-forward="false" selection-start-line="78" selection-start-column="80" selection-end-line="78" selection-end-column="80" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <marker date="1499811243730" expanded="true" signature="2935:2969" ph="select * fro... players" />
+                <marker date="1499811243730" expanded="true" signature="2935:2983" ph="select * fro... players" />
               </folding>
             </state>
           </provider>
@@ -58,8 +86,8 @@
       <file leaf-file-name="PlotRemoveListener.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/branwidth/EldinLand/Listeners/PlotRemoveListener.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="408">
-              <caret line="24" column="74" lean-forward="true" selection-start-line="24" selection-start-column="74" selection-end-line="24" selection-end-column="74" />
+            <state relative-caret-position="357">
+              <caret line="24" column="96" lean-forward="true" selection-start-line="22" selection-start-column="8" selection-end-line="24" selection-end-column="96" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -70,8 +98,8 @@
       <file leaf-file-name="Land.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/branwidth/EldinLand/Land.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="19" column="35" lean-forward="false" selection-start-line="19" selection-start-column="35" selection-end-line="19" selection-end-column="35" />
+            <state relative-caret-position="561">
+              <caret line="39" column="89" lean-forward="false" selection-start-line="39" selection-start-column="89" selection-end-line="39" selection-end-column="89" />
               <folding>
                 <marker date="1498855643956" expanded="true" signature="823:871" ph="select * fro... players" />
               </folding>
@@ -82,12 +110,12 @@
       <file leaf-file-name="MySQL.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/branwidth/EldinLand/MySQL.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="578">
-              <caret line="37" column="38" lean-forward="false" selection-start-line="37" selection-start-column="38" selection-end-line="37" selection-end-column="38" />
+            <state relative-caret-position="1207">
+              <caret line="78" column="67" lean-forward="false" selection-start-line="78" selection-start-column="67" selection-end-line="78" selection-end-column="67" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <marker date="1499106240872" expanded="true" signature="1546:1593" ph="select * fro... players" />
-                <marker date="1499106240872" expanded="true" signature="2230:2329" ph="UPDATE playe... " />
+                <marker date="1499811243678" expanded="true" signature="1546:1593" ph="select * fro... players" />
+                <marker date="1499811243678" expanded="true" signature="2233:2332" ph="UPDATE playe... " />
               </folding>
             </state>
           </provider>
@@ -144,12 +172,14 @@
         <option value="$PROJECT_DIR$/src/com/branwidth/EldinLand/NewLandListener.java" />
         <option value="$PROJECT_DIR$/src/com/branwidth/EldinLand/DistanceListener.java" />
         <option value="$PROJECT_DIR$/src/com/branwidth/EldinLand/PlotCreateListener.java" />
-        <option value="$PROJECT_DIR$/src/com/branwidth/EldinLand/Main.java" />
         <option value="$PROJECT_DIR$/src/com/branwidth/EldinLand/Land.java" />
         <option value="$PROJECT_DIR$/src/config.yml" />
-        <option value="$PROJECT_DIR$/src/com/branwidth/EldinLand/MySQL.java" />
         <option value="$PROJECT_DIR$/src/com/branwidth/EldinLand/Listeners/PlotRemoveListener.java" />
         <option value="$PROJECT_DIR$/src/com/branwidth/EldinLand/Listeners/PlotCreateListener.java" />
+        <option value="$PROJECT_DIR$/src/com/branwidth/EldinLand/Main.java" />
+        <option value="$PROJECT_DIR$/src/com/branwidth/EldinLand/MySQL.java" />
+        <option value="$PROJECT_DIR$/src/com/branwidth/EldinLand/Listeners/PlotChangeSizeListener.java" />
+        <option value="$PROJECT_DIR$/src/com/branwidth/EldinLand/Listeners/PlotChangeOwnerListener.java" />
       </list>
     </option>
   </component>
@@ -181,8 +211,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="Scratches" />
       <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
@@ -262,6 +290,8 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -714,21 +744,21 @@
       <workItem from="1499085773967" duration="6336000" />
       <workItem from="1499275467501" duration="734000" />
       <workItem from="1499455520489" duration="8000" />
-      <workItem from="1499455587100" duration="101000" />
+      <workItem from="1499455587100" duration="696000" />
+      <workItem from="1499810902834" duration="1680000" />
+      <workItem from="1499991569192" duration="1373000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="98785000" />
+    <option name="totallyTimeSpent" value="102433000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="0" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32875264" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -752,6 +782,7 @@
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32875264" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980973" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
@@ -773,22 +804,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/config.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="14" lean-forward="false" selection-start-line="12" selection-start-column="14" selection-end-line="12" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/plugin.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="19" lean-forward="false" selection-start-line="4" selection-start-column="19" selection-end-line="4" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/branwidth/EldinLand/LandCreateListener.java" />
     <entry file="file://$PROJECT_DIR$/src/com/branwidth/EldinLand/Main.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -805,8 +820,8 @@
           <caret line="18" column="0" lean-forward="true" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <marker date="1499106240872" expanded="true" signature="1546:1593" ph="select * fro... players" />
-            <marker date="1499106240872" expanded="true" signature="2230:2329" ph="UPDATE playe... " />
+            <marker date="1499811243678" expanded="true" signature="1546:1593" ph="select * fro... players" />
+            <marker date="1499811243678" expanded="true" signature="2233:2332" ph="UPDATE playe... " />
           </folding>
         </state>
       </provider>
@@ -849,8 +864,8 @@
           <caret line="28" column="9" lean-forward="false" selection-start-line="28" selection-start-column="9" selection-end-line="28" selection-end-column="9" />
           <folding>
             <element signature="imports" expanded="true" />
-            <marker date="1499106240872" expanded="true" signature="1546:1593" ph="select * fro... players" />
-            <marker date="1499106240872" expanded="true" signature="2230:2329" ph="UPDATE playe... " />
+            <marker date="1499811243678" expanded="true" signature="1546:1593" ph="select * fro... players" />
+            <marker date="1499811243678" expanded="true" signature="2233:2332" ph="UPDATE playe... " />
           </folding>
         </state>
       </provider>
@@ -893,8 +908,8 @@
           <caret line="28" column="9" lean-forward="true" selection-start-line="28" selection-start-column="9" selection-end-line="28" selection-end-column="9" />
           <folding>
             <element signature="imports" expanded="true" />
-            <marker date="1499106240872" expanded="true" signature="1546:1593" ph="select * fro... players" />
-            <marker date="1499106240872" expanded="true" signature="2230:2329" ph="UPDATE playe... " />
+            <marker date="1499811243678" expanded="true" signature="1546:1593" ph="select * fro... players" />
+            <marker date="1499811243678" expanded="true" signature="2233:2332" ph="UPDATE playe... " />
           </folding>
         </state>
       </provider>
@@ -936,8 +951,8 @@
           <caret line="9" column="0" lean-forward="true" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <marker date="1499106240872" expanded="true" signature="1546:1593" ph="select * fro... players" />
-            <marker date="1499106240872" expanded="true" signature="2230:2329" ph="UPDATE playe... " />
+            <marker date="1499811243678" expanded="true" signature="1546:1593" ph="select * fro... players" />
+            <marker date="1499811243678" expanded="true" signature="2233:2332" ph="UPDATE playe... " />
           </folding>
         </state>
       </provider>
@@ -1085,14 +1100,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/plot.yml" />
-    <entry file="file://$PROJECT_DIR$/src/com/branwidth/EldinLand/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="20" column="86" lean-forward="false" selection-start-line="20" selection-start-column="86" selection-end-line="20" selection-end-column="86" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/config.yml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
@@ -1101,10 +1108,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/branwidth/EldinLand/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="18" column="28" lean-forward="false" selection-start-line="18" selection-start-column="28" selection-end-line="18" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/branwidth/EldinLand/Land.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="19" column="35" lean-forward="false" selection-start-line="19" selection-start-column="35" selection-end-line="19" selection-end-column="35" />
+        <state relative-caret-position="561">
+          <caret line="39" column="89" lean-forward="false" selection-start-line="39" selection-start-column="89" selection-end-line="39" selection-end-column="89" />
           <folding>
             <marker date="1498855643956" expanded="true" signature="823:871" ph="select * fro... players" />
           </folding>
@@ -1113,20 +1128,30 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/branwidth/EldinLand/MySQL.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="578">
-          <caret line="37" column="38" lean-forward="false" selection-start-line="37" selection-start-column="38" selection-end-line="37" selection-end-column="38" />
+        <state relative-caret-position="1207">
+          <caret line="78" column="67" lean-forward="false" selection-start-line="78" selection-start-column="67" selection-end-line="78" selection-end-column="67" />
           <folding>
             <element signature="imports" expanded="true" />
-            <marker date="1499106240872" expanded="true" signature="1546:1593" ph="select * fro... players" />
-            <marker date="1499106240872" expanded="true" signature="2230:2329" ph="UPDATE playe... " />
+            <marker date="1499811243678" expanded="true" signature="1546:1593" ph="select * fro... players" />
+            <marker date="1499811243678" expanded="true" signature="2233:2332" ph="UPDATE playe... " />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/branwidth/EldinLand/Listeners/PlotRemoveListener.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="24" column="74" lean-forward="true" selection-start-line="24" selection-start-column="74" selection-end-line="24" selection-end-column="74" />
+        <state relative-caret-position="357">
+          <caret line="24" column="96" lean-forward="true" selection-start-line="22" selection-start-column="8" selection-end-line="24" selection-end-column="96" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/branwidth/EldinLand/Listeners/PlotChangeSizeListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="19" column="96" lean-forward="false" selection-start-line="19" selection-start-column="96" selection-end-line="19" selection-end-column="96" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1135,12 +1160,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/branwidth/EldinLand/Listeners/PlotCreateListener.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1065">
-          <caret line="80" column="70" lean-forward="true" selection-start-line="80" selection-start-column="70" selection-end-line="80" selection-end-column="70" />
+        <state relative-caret-position="1326">
+          <caret line="78" column="80" lean-forward="false" selection-start-line="78" selection-start-column="80" selection-end-line="78" selection-end-column="80" />
           <folding>
             <element signature="imports" expanded="true" />
-            <marker date="1499455683877" expanded="true" signature="2970:3004" ph="select * fro... players" />
-            <marker date="1499455683877" expanded="true" signature="2970:3018" ph="select * fro... players" />
+            <marker date="1499811243730" expanded="true" signature="2935:2969" ph="select * fro... players" />
+            <marker date="1499811243730" expanded="true" signature="2935:2983" ph="select * fro... players" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/branwidth/EldinLand/Listeners/PlotChangeOwnerListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="22" column="2" lean-forward="false" selection-start-line="22" selection-start-column="2" selection-end-line="22" selection-end-column="2" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>

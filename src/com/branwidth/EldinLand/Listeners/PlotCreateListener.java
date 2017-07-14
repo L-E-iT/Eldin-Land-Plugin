@@ -12,7 +12,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Map;
@@ -77,7 +76,7 @@ public class PlotCreateListener implements Listener {
                     // get new value
                     Long newWildLand = prevWildLand + plotArea;
                     // set MySQL statement
-                    MySQL.addPlayerWildLand(pUUID, newWildLand, playerWorld);
+                    MySQL.changePlayerWildLand(pUUID, newWildLand, playerWorld);
                     ResultSet RSWildLand = MySQL.getPlayerLand(pUUID);
                     // Send player new wild land values
                     if (playerWorld != null) {
