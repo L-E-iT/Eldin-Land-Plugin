@@ -18,16 +18,23 @@ public class PlotChangeOwnerListener implements Listener {
     @EventHandler
     public void onChangeOwnerEvent(ResidenceOwnerChangeEvent event) throws SQLException {
 
-        String pNewName = event.getNewOwner();
-        Player pNew = Bukkit.getPlayer(pNewName);
-55
 
-        String pOldName = event.getResidence().getOwner();
-        Player pOld = Bukkit.getPlayer(pOldName);
 
-        String newPlayerWorld = MySQL.getPlayerWorld(pOld.getWorld().getName());
-        String newPlayerWorldReplaced = newPlayerWorld.replace("_count","");
-        String preMessage = Main.getPlugin().getConfig().getString("MessagesConfig.PreMessage");
+//        String pNewName = event.getNewOwner();
+//        Player pNew = Bukkit.getPlayer(pNewName);
+//
+//        String pOldName = event.getResidence().getOwner();
+//        Player pOld = Bukkit.getPlayer(pOldName);
+//
+//        String newPlayerWorld = MySQL.getPlayerWorld(pOld.getWorld().getName());
+//        String newPlayerWorldReplaced = newPlayerWorld.replace("_count","");
+//        String preMessage = Main.getPlugin().getConfig().getString("MessagesConfig.PreMessage");
+
+
+//        // Ensure that the MySQL database connection is established
+//        if (!MySQL.isConnected()) {
+//            MySQL.connect();
+//        }
 
 
 
