@@ -76,12 +76,48 @@ public class MySQL {
         ps.executeUpdate();
     }
 
-    public static void changePlayerCityLand() throws SQLException {
-
+    private static int getPlayerID(String pUUID) throws SQLException {
+        PreparedStatement PSplayer = MySQL.getConnection().prepareStatement("select * from players WHERE uuid='" + pUUID + "'");
+        ResultSet RSplayer = PSplayer.executeQuery();
+        RSplayer.next();
+        return RSplayer.getInt("id");
     }
 
-    public static void changeCityPlot() throws SQLException {
+    public static void changePlayerCityLand(String playerName, String pUUID, Long tileCount) throws SQLException {
+        PreparedStatement ps = MySQL.getConnection().prepareStatement("UPDATE players SET city_count = " + tileCount +
+                " WHERE uuid = '" + pUUID + "'");
 
+        // Continue this with adding city land
+    }
+
+    public static void changeCityPlot(String playerName, String townName, Long tileCount, String pUUID, Boolean addLand) throws SQLException {
+        int playerID = getPlayerID(pUUID);
+
+//        Will equal city ID:
+//        ("SELECT id FROM cities WHERE city_name = '" + townName + "'");
+
+//        Will get if a player owns land in a city
+//        ("SELECT COUNT(*) FROM city_plots WHERE (city_id = " + cityID + ") AND (player_id = " + playerID ));
+
+/*        if (player owns land) {
+                if (addLand) {
+                    add land to the existing count
+                    }
+                else {
+                    remove land from existing count
+                }
+            } else {
+                if (addLand) {
+                    add new record to the existing table
+                    }
+                else {
+                    this should never happen? o.o
+          }
+    */
+    }
+
+    public static void changeCitySize(String pUUID, Long Count, String playerWorld, String townName) {
+        // "UPDATE cities SET total_tiles = total_tiles + "Count" WHERE town_name = '"townName + "'"
     }
 
     public static void changePlotOwner() throws SQLException {

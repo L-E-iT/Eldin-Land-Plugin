@@ -1,9 +1,6 @@
 package com.branwidth.EldinLand;
 
-import com.branwidth.EldinLand.Listeners.PlotChangeOwnerListener;
-import com.branwidth.EldinLand.Listeners.PlotChangeSizeListener;
-import com.branwidth.EldinLand.Listeners.PlotCreateListener;
-import com.branwidth.EldinLand.Listeners.PlotRemoveListener;
+import com.branwidth.EldinLand.Listeners.*;
 import org.bukkit.plugin.java.JavaPlugin;
 import java.io.File;
 
@@ -23,6 +20,7 @@ public class Main extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new PlotRemoveListener(), this);
         getServer().getPluginManager().registerEvents(new PlotChangeSizeListener(), this);
         getServer().getPluginManager().registerEvents(new PlotChangeOwnerListener(), this);
+        getServer().getPluginManager().registerEvents(new PlotRentListener(), this);
     }
 
 

@@ -35,8 +35,7 @@ public class PlotChangeSizeListener implements Listener {
         }
 
         if (!Objects.equals(p.getName(), event.getResidence().getOwner())) {
-            event.setCancelled(true);
-            p.sendMessage(preMessage + ChatColor.RED + "You do not own this plot!");
+
         } else {
 
             // Get old land, set new land values
