@@ -1,7 +1,8 @@
 package com.branwidth.EldinLand;
 
-import com.bekvon.bukkit.residence.Residence;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.entity.Player;
 
 import java.sql.*;
 
@@ -92,28 +93,39 @@ public class MySQL {
 
     public static void changeCityPlot(String playerName, String townName, Long tileCount, String pUUID, Boolean addLand) throws SQLException {
         int playerID = getPlayerID(pUUID);
+        Boolean ownsLand = false;
 
-//        Will equal city ID:
-//        ("SELECT id FROM cities WHERE city_name = '" + townName + "'");
+        // Get city ID from cities table
+        PreparedStatement psID = MySQL.getConnection().prepareStatement("SELECT id FROM cities WHERE city_name = '" + townName + "'");
+        ResultSet rsID = psID.executeQuery();
+        rsID.next();
+        int cityID = rsID.getInt("id");
 
-//        Will get if a player owns land in a city
-//        ("SELECT COUNT(*) FROM city_plots WHERE (city_id = " + cityID + ") AND (player_id = " + playerID ));
+        // Will get if a player owns land in a city
+        PreparedStatement psOwnLand = MySQL.getConnection().prepareStatement("SELECT COUNT(*) FROM city_plots WHERE city_id = " + cityID + " AND player_id = " + playerID);
+        ResultSet rsOwnLand = psOwnLand.executeQuery();
+        rsOwnLand.next();
+        if (rsOwnLand.getInt("count") > 0) {
+            ownsLand = true;
+        }
 
-/*        if (player owns land) {
-                if (addLand) {
-                    add land to the existing count
-                    }
-                else {
-                    remove land from existing count
-                }
+        // Set prepared statement for adding land into city tables
+//        PrepasredStatement psAddCityLand = MySQL.getConnection().prepareStatement();
+
+        if (ownsLand) {
+            if (addLand) {
+                // Add land to existing count
             } else {
-                if (addLand) {
-                    add new record to the existing table
-                    }
-                else {
-                    this should never happen? o.o
-          }
-    */
+                // remove land from existing amount
+            }
+        } else {
+            if (addLand) {
+                // add a new record to the existing table
+            } else {
+                Player p = Bukkit.getPlayer(pUUID);
+                p.sendMessage(ChatColor.RED + "Something went wrong... Submit a ticket about MySQL Class Errors and City Land with the Eldin Land Plugin");
+            }
+        }
     }
 
     public static void changeCitySize(String pUUID, Long Count, String playerWorld, String townName) {
