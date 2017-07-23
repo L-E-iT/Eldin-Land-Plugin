@@ -85,14 +85,12 @@ public class MySQL {
         return RSplayer.getInt("id");
     }
 
-    public static void changePlayerCityLand(String playerName, String pUUID, Long tileCount) throws SQLException {
-        PreparedStatement ps = MySQL.getConnection().prepareStatement("UPDATE players SET city_count = " + tileCount +
+    public static void changePlayerCityLand(String pUUID, Long tileCount) throws SQLException {
+        PreparedStatement ps = MySQL.getConnection().prepareStatement("UPDATE players SET city_count = city_count + " + tileCount +
                 " WHERE uuid = '" + pUUID + "'");
-
-        // Continue this with adding city land
     }
 
-    public static void changeCityPlot(String playerName, String townName, Long tileCount, String pUUID, Boolean addLand) throws SQLException {
+    public static void changeCityPlot(String townName, Long tileCount, String pUUID, Boolean addLand) throws SQLException {
         int playerID = getPlayerID(pUUID);
         Boolean ownsLand = false;
 

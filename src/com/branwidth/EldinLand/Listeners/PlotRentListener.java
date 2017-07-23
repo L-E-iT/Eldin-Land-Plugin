@@ -37,14 +37,14 @@ public class PlotRentListener implements Listener {
 
         if (rentType.equals(RENT)) {
             // Change player city land count
-            MySQL.changePlayerCityLand();
+            MySQL.changePlayerCityLand(pUUID, plotSize);
             // Change town plot details
-            MySQL.changeCityPlot();
+            MySQL.changeCityPlot(townName, plotSize, pUUID, true);
         } else if (rentType.equals(UNRENT) || rentType.equals(RENT_EXPIRE)) {
             // Change player city land count
-            MySQL.changePlayerCityLand();
+            MySQL.changePlayerCityLand(pUUID, -plotSize);
             // Change town plot details
-            MySQL.changeCityPlot();
+            MySQL.changeCityPlot(townName, plotSize, pUUID, false);
         }
 
 

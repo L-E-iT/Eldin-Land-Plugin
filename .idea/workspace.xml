@@ -8,6 +8,7 @@
   <component name="ChangeListManager">
     <list default="true" id="03b4c01f-ce0a-4183-a572-e8a677c36180" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/branwidth/EldinLand/Listeners/PlotRentListener.java" afterPath="$PROJECT_DIR$/src/com/branwidth/EldinLand/Listeners/PlotRentListener.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/branwidth/EldinLand/MySQL.java" afterPath="$PROJECT_DIR$/src/com/branwidth/EldinLand/MySQL.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -35,7 +36,7 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/branwidth/EldinLand/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
+            <state relative-caret-position="351">
               <caret line="22" column="63" lean-forward="false" selection-start-line="22" selection-start-column="63" selection-end-line="22" selection-end-column="63" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -44,33 +45,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PlotChangeOwnerListener.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/branwidth/EldinLand/Listeners/PlotChangeOwnerListener.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="28" column="82" lean-forward="false" selection-start-line="28" selection-start-column="82" selection-end-line="28" selection-end-column="82" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PlotChangeSizeListener.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/branwidth/EldinLand/Listeners/PlotChangeSizeListener.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="29" column="62" lean-forward="false" selection-start-line="29" selection-start-column="62" selection-end-line="29" selection-end-column="62" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PlotRentListener.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="PlotRentListener.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/branwidth/EldinLand/Listeners/PlotRentListener.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="27" column="42" lean-forward="false" selection-start-line="27" selection-start-column="42" selection-end-line="27" selection-end-column="42" />
+            <state relative-caret-position="215">
+              <caret line="18" column="75" lean-forward="true" selection-start-line="18" selection-start-column="75" selection-end-line="18" selection-end-column="75" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -78,73 +57,36 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PlotCreateListener.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/branwidth/EldinLand/Listeners/PlotCreateListener.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1190">
-              <caret line="84" column="46" lean-forward="false" selection-start-line="84" selection-start-column="46" selection-end-line="84" selection-end-column="46" />
-              <folding>
-                <marker date="1499811243730" expanded="true" signature="2935:2969" ph="select * fro... players" />
-                <marker date="1499811243730" expanded="true" signature="2935:2983" ph="select * fro... players" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PlotRemoveListener.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/branwidth/EldinLand/Listeners/PlotRemoveListener.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="459">
-              <caret line="36" column="63" lean-forward="false" selection-start-line="36" selection-start-column="63" selection-end-line="36" selection-end-column="63" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Land.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/branwidth/EldinLand/Land.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="561">
-              <caret line="39" column="89" lean-forward="false" selection-start-line="39" selection-start-column="89" selection-end-line="39" selection-end-column="89" />
-              <folding>
-                <marker date="1498855643956" expanded="true" signature="823:871" ph="select * fro... players" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MySQL.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="MySQL.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/branwidth/EldinLand/MySQL.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="759">
-              <caret line="125" column="58" lean-forward="true" selection-start-line="125" selection-start-column="58" selection-end-line="125" selection-end-column="58" />
+            <state relative-caret-position="0">
+              <caret line="88" column="131" lean-forward="true" selection-start-line="88" selection-start-column="131" selection-end-line="88" selection-end-column="131" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <marker date="1500784356167" expanded="true" signature="1598:1645" ph="select * fro... players" />
-                <marker date="1500784356167" expanded="true" signature="2285:2384" ph="UPDATE playe... " />
-                <marker date="1500784356167" expanded="true" signature="2571:2619" ph="select * fro... players" />
-                <marker date="1500784356167" expanded="true" signature="2933:2962" ph="UPDATE playe... " />
-                <marker date="1500784356167" expanded="true" signature="2933:2964" ph="UPDATE playe... " />
-                <marker date="1500784356167" expanded="true" signature="2933:2978" ph="UPDATE playe... " />
-                <marker date="1500784356167" expanded="true" signature="2933:3027" ph="UPDATE playe... " />
-                <marker date="1500784356167" expanded="true" signature="3421:3479" ph="SELECT id FR... cities" />
-                <marker date="1500784356167" expanded="true" signature="3721:3800" ph="SELECT COUNT... city_plots" />
-                <marker date="1500784356167" expanded="true" signature="4248:4294" ph="UPDATE city_... " />
-                <marker date="1500784356167" expanded="true" signature="4248:4331" ph="UPDATE city_... " />
-                <marker date="1500784356167" expanded="true" signature="4248:4332" ph="UPDATE city_... " />
-                <marker date="1500784356167" expanded="true" signature="4248:4365" ph="UPDATE city_... " />
-                <marker date="1500784356167" expanded="true" signature="4248:4380" ph="UPDATE city_... " />
-                <marker date="1500784356167" expanded="true" signature="4603:4650" ph="UPDATE city_... " />
-                <marker date="1500784356167" expanded="true" signature="4603:4686" ph="UPDATE city_... " />
-                <marker date="1500784356167" expanded="true" signature="4603:4719" ph="UPDATE city_... " />
-                <marker date="1500784356167" expanded="true" signature="4603:4734" ph="UPDATE city_... " />
-                <marker date="1500784356167" expanded="true" signature="5006:5105" ph="INSERT INTO city_plots... " />
-                <marker date="1500784356167" expanded="true" signature="5006:5115" ph="INSERT INTO city_plots... " />
-                <marker date="1500784356167" expanded="true" signature="5006:5116" ph="INSERT INTO city_plots... " />
-                <marker date="1500784356167" expanded="true" signature="5773:5869" ph="UPDATE citie... " />
-                <marker date="1500784356167" expanded="true" signature="6434:6462" ph="SELECT city_... cities" />
+                <marker date="1500831243529" expanded="true" signature="1598:1645" ph="select * fro... players" />
+                <marker date="1500831243529" expanded="true" signature="2285:2384" ph="UPDATE playe... " />
+                <marker date="1500831243529" expanded="true" signature="2571:2619" ph="select * fro... players" />
+                <marker date="1500831243529" expanded="true" signature="2914:2943" ph="UPDATE playe... " />
+                <marker date="1500831243529" expanded="true" signature="2914:2945" ph="UPDATE playe... " />
+                <marker date="1500831243529" expanded="true" signature="2914:2972" ph="UPDATE playe... " />
+                <marker date="1500831243529" expanded="true" signature="2914:3021" ph="UPDATE playe... " />
+                <marker date="1500831243529" expanded="true" signature="3348:3406" ph="SELECT id FR... cities" />
+                <marker date="1500831243529" expanded="true" signature="3648:3727" ph="SELECT COUNT... city_plots" />
+                <marker date="1500831243529" expanded="true" signature="4175:4221" ph="UPDATE city_... " />
+                <marker date="1500831243529" expanded="true" signature="4175:4258" ph="UPDATE city_... " />
+                <marker date="1500831243529" expanded="true" signature="4175:4259" ph="UPDATE city_... " />
+                <marker date="1500831243529" expanded="true" signature="4175:4292" ph="UPDATE city_... " />
+                <marker date="1500831243529" expanded="true" signature="4175:4307" ph="UPDATE city_... " />
+                <marker date="1500831243529" expanded="true" signature="4530:4577" ph="UPDATE city_... " />
+                <marker date="1500831243529" expanded="true" signature="4530:4613" ph="UPDATE city_... " />
+                <marker date="1500831243529" expanded="true" signature="4530:4646" ph="UPDATE city_... " />
+                <marker date="1500831243529" expanded="true" signature="4530:4661" ph="UPDATE city_... " />
+                <marker date="1500831243529" expanded="true" signature="4933:5032" ph="INSERT INTO city_plots... " />
+                <marker date="1500831243529" expanded="true" signature="4933:5042" ph="INSERT INTO city_plots... " />
+                <marker date="1500831243529" expanded="true" signature="4933:5043" ph="INSERT INTO city_plots... " />
+                <marker date="1500831243529" expanded="true" signature="5700:5796" ph="UPDATE citie... " />
+                <marker date="1500831243529" expanded="true" signature="6361:6389" ph="SELECT city_... cities" />
               </folding>
             </state>
           </provider>
@@ -208,8 +150,8 @@
         <option value="$PROJECT_DIR$/src/com/branwidth/EldinLand/Listeners/PlotChangeOwnerListener.java" />
         <option value="$PROJECT_DIR$/src/com/branwidth/EldinLand/Main.java" />
         <option value="$PROJECT_DIR$/src/com/branwidth/EldinLand/Listeners/PlotChangeSizeListener.java" />
-        <option value="$PROJECT_DIR$/src/com/branwidth/EldinLand/Listeners/PlotRentListener.java" />
         <option value="$PROJECT_DIR$/src/com/branwidth/EldinLand/MySQL.java" />
+        <option value="$PROJECT_DIR$/src/com/branwidth/EldinLand/Listeners/PlotRentListener.java" />
       </list>
     </option>
   </component>
@@ -241,6 +183,10 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="Scratches" />
+      <pane id="AndroidView" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -270,10 +216,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scratches" />
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
-      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -725,12 +667,13 @@
       <workItem from="1500330756453" duration="4356000" />
       <workItem from="1500508541178" duration="40000" />
       <workItem from="1500508694842" duration="3238000" />
-      <workItem from="1500743477267" duration="3233000" />
+      <workItem from="1500743477267" duration="3572000" />
+      <workItem from="1500830025966" duration="1410000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="116546000" />
+    <option name="totallyTimeSpent" value="118295000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -841,29 +784,29 @@
           <caret line="18" column="0" lean-forward="true" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <marker date="1500784356167" expanded="true" signature="1598:1645" ph="select * fro... players" />
-            <marker date="1500784356167" expanded="true" signature="2285:2384" ph="UPDATE playe... " />
-            <marker date="1500784356167" expanded="true" signature="2571:2619" ph="select * fro... players" />
-            <marker date="1500784356167" expanded="true" signature="2933:2962" ph="UPDATE playe... " />
-            <marker date="1500784356167" expanded="true" signature="2933:2964" ph="UPDATE playe... " />
-            <marker date="1500784356167" expanded="true" signature="2933:2978" ph="UPDATE playe... " />
-            <marker date="1500784356167" expanded="true" signature="2933:3027" ph="UPDATE playe... " />
-            <marker date="1500784356167" expanded="true" signature="3421:3479" ph="SELECT id FR... cities" />
-            <marker date="1500784356167" expanded="true" signature="3721:3800" ph="SELECT COUNT... city_plots" />
-            <marker date="1500784356167" expanded="true" signature="4248:4294" ph="UPDATE city_... " />
-            <marker date="1500784356167" expanded="true" signature="4248:4331" ph="UPDATE city_... " />
-            <marker date="1500784356167" expanded="true" signature="4248:4332" ph="UPDATE city_... " />
-            <marker date="1500784356167" expanded="true" signature="4248:4365" ph="UPDATE city_... " />
-            <marker date="1500784356167" expanded="true" signature="4248:4380" ph="UPDATE city_... " />
-            <marker date="1500784356167" expanded="true" signature="4603:4650" ph="UPDATE city_... " />
-            <marker date="1500784356167" expanded="true" signature="4603:4686" ph="UPDATE city_... " />
-            <marker date="1500784356167" expanded="true" signature="4603:4719" ph="UPDATE city_... " />
-            <marker date="1500784356167" expanded="true" signature="4603:4734" ph="UPDATE city_... " />
-            <marker date="1500784356167" expanded="true" signature="5006:5105" ph="INSERT INTO city_plots... " />
-            <marker date="1500784356167" expanded="true" signature="5006:5115" ph="INSERT INTO city_plots... " />
-            <marker date="1500784356167" expanded="true" signature="5006:5116" ph="INSERT INTO city_plots... " />
-            <marker date="1500784356167" expanded="true" signature="5773:5869" ph="UPDATE citie... " />
-            <marker date="1500784356167" expanded="true" signature="6434:6462" ph="SELECT city_... cities" />
+            <marker date="1500831243529" expanded="true" signature="1598:1645" ph="select * fro... players" />
+            <marker date="1500831243529" expanded="true" signature="2285:2384" ph="UPDATE playe... " />
+            <marker date="1500831243529" expanded="true" signature="2571:2619" ph="select * fro... players" />
+            <marker date="1500831243529" expanded="true" signature="2914:2943" ph="UPDATE playe... " />
+            <marker date="1500831243529" expanded="true" signature="2914:2945" ph="UPDATE playe... " />
+            <marker date="1500831243529" expanded="true" signature="2914:2972" ph="UPDATE playe... " />
+            <marker date="1500831243529" expanded="true" signature="2914:3021" ph="UPDATE playe... " />
+            <marker date="1500831243529" expanded="true" signature="3348:3406" ph="SELECT id FR... cities" />
+            <marker date="1500831243529" expanded="true" signature="3648:3727" ph="SELECT COUNT... city_plots" />
+            <marker date="1500831243529" expanded="true" signature="4175:4221" ph="UPDATE city_... " />
+            <marker date="1500831243529" expanded="true" signature="4175:4258" ph="UPDATE city_... " />
+            <marker date="1500831243529" expanded="true" signature="4175:4259" ph="UPDATE city_... " />
+            <marker date="1500831243529" expanded="true" signature="4175:4292" ph="UPDATE city_... " />
+            <marker date="1500831243529" expanded="true" signature="4175:4307" ph="UPDATE city_... " />
+            <marker date="1500831243529" expanded="true" signature="4530:4577" ph="UPDATE city_... " />
+            <marker date="1500831243529" expanded="true" signature="4530:4613" ph="UPDATE city_... " />
+            <marker date="1500831243529" expanded="true" signature="4530:4646" ph="UPDATE city_... " />
+            <marker date="1500831243529" expanded="true" signature="4530:4661" ph="UPDATE city_... " />
+            <marker date="1500831243529" expanded="true" signature="4933:5032" ph="INSERT INTO city_plots... " />
+            <marker date="1500831243529" expanded="true" signature="4933:5042" ph="INSERT INTO city_plots... " />
+            <marker date="1500831243529" expanded="true" signature="4933:5043" ph="INSERT INTO city_plots... " />
+            <marker date="1500831243529" expanded="true" signature="5700:5796" ph="UPDATE citie... " />
+            <marker date="1500831243529" expanded="true" signature="6361:6389" ph="SELECT city_... cities" />
           </folding>
         </state>
       </provider>
@@ -908,29 +851,29 @@
           <caret line="28" column="9" lean-forward="false" selection-start-line="28" selection-start-column="9" selection-end-line="28" selection-end-column="9" />
           <folding>
             <element signature="imports" expanded="true" />
-            <marker date="1500784356167" expanded="true" signature="1598:1645" ph="select * fro... players" />
-            <marker date="1500784356167" expanded="true" signature="2285:2384" ph="UPDATE playe... " />
-            <marker date="1500784356167" expanded="true" signature="2571:2619" ph="select * fro... players" />
-            <marker date="1500784356167" expanded="true" signature="2933:2962" ph="UPDATE playe... " />
-            <marker date="1500784356167" expanded="true" signature="2933:2964" ph="UPDATE playe... " />
-            <marker date="1500784356167" expanded="true" signature="2933:2978" ph="UPDATE playe... " />
-            <marker date="1500784356167" expanded="true" signature="2933:3027" ph="UPDATE playe... " />
-            <marker date="1500784356167" expanded="true" signature="3421:3479" ph="SELECT id FR... cities" />
-            <marker date="1500784356167" expanded="true" signature="3721:3800" ph="SELECT COUNT... city_plots" />
-            <marker date="1500784356167" expanded="true" signature="4248:4294" ph="UPDATE city_... " />
-            <marker date="1500784356167" expanded="true" signature="4248:4331" ph="UPDATE city_... " />
-            <marker date="1500784356167" expanded="true" signature="4248:4332" ph="UPDATE city_... " />
-            <marker date="1500784356167" expanded="true" signature="4248:4365" ph="UPDATE city_... " />
-            <marker date="1500784356167" expanded="true" signature="4248:4380" ph="UPDATE city_... " />
-            <marker date="1500784356167" expanded="true" signature="4603:4650" ph="UPDATE city_... " />
-            <marker date="1500784356167" expanded="true" signature="4603:4686" ph="UPDATE city_... " />
-            <marker date="1500784356167" expanded="true" signature="4603:4719" ph="UPDATE city_... " />
-            <marker date="1500784356167" expanded="true" signature="4603:4734" ph="UPDATE city_... " />
-            <marker date="1500784356167" expanded="true" signature="5006:5105" ph="INSERT INTO city_plots... " />
-            <marker date="1500784356167" expanded="true" signature="5006:5115" ph="INSERT INTO city_plots... " />
-            <marker date="1500784356167" expanded="true" signature="5006:5116" ph="INSERT INTO city_plots... " />
-            <marker date="1500784356167" expanded="true" signature="5773:5869" ph="UPDATE citie... " />
-            <marker date="1500784356167" expanded="true" signature="6434:6462" ph="SELECT city_... cities" />
+            <marker date="1500831243529" expanded="true" signature="1598:1645" ph="select * fro... players" />
+            <marker date="1500831243529" expanded="true" signature="2285:2384" ph="UPDATE playe... " />
+            <marker date="1500831243529" expanded="true" signature="2571:2619" ph="select * fro... players" />
+            <marker date="1500831243529" expanded="true" signature="2914:2943" ph="UPDATE playe... " />
+            <marker date="1500831243529" expanded="true" signature="2914:2945" ph="UPDATE playe... " />
+            <marker date="1500831243529" expanded="true" signature="2914:2972" ph="UPDATE playe... " />
+            <marker date="1500831243529" expanded="true" signature="2914:3021" ph="UPDATE playe... " />
+            <marker date="1500831243529" expanded="true" signature="3348:3406" ph="SELECT id FR... cities" />
+            <marker date="1500831243529" expanded="true" signature="3648:3727" ph="SELECT COUNT... city_plots" />
+            <marker date="1500831243529" expanded="true" signature="4175:4221" ph="UPDATE city_... " />
+            <marker date="1500831243529" expanded="true" signature="4175:4258" ph="UPDATE city_... " />
+            <marker date="1500831243529" expanded="true" signature="4175:4259" ph="UPDATE city_... " />
+            <marker date="1500831243529" expanded="true" signature="4175:4292" ph="UPDATE city_... " />
+            <marker date="1500831243529" expanded="true" signature="4175:4307" ph="UPDATE city_... " />
+            <marker date="1500831243529" expanded="true" signature="4530:4577" ph="UPDATE city_... " />
+            <marker date="1500831243529" expanded="true" signature="4530:4613" ph="UPDATE city_... " />
+            <marker date="1500831243529" expanded="true" signature="4530:4646" ph="UPDATE city_... " />
+            <marker date="1500831243529" expanded="true" signature="4530:4661" ph="UPDATE city_... " />
+            <marker date="1500831243529" expanded="true" signature="4933:5032" ph="INSERT INTO city_plots... " />
+            <marker date="1500831243529" expanded="true" signature="4933:5042" ph="INSERT INTO city_plots... " />
+            <marker date="1500831243529" expanded="true" signature="4933:5043" ph="INSERT INTO city_plots... " />
+            <marker date="1500831243529" expanded="true" signature="5700:5796" ph="UPDATE citie... " />
+            <marker date="1500831243529" expanded="true" signature="6361:6389" ph="SELECT city_... cities" />
           </folding>
         </state>
       </provider>
@@ -975,29 +918,29 @@
           <caret line="28" column="9" lean-forward="true" selection-start-line="28" selection-start-column="9" selection-end-line="28" selection-end-column="9" />
           <folding>
             <element signature="imports" expanded="true" />
-            <marker date="1500784356167" expanded="true" signature="1598:1645" ph="select * fro... players" />
-            <marker date="1500784356167" expanded="true" signature="2285:2384" ph="UPDATE playe... " />
-            <marker date="1500784356167" expanded="true" signature="2571:2619" ph="select * fro... players" />
-            <marker date="1500784356167" expanded="true" signature="2933:2962" ph="UPDATE playe... " />
-            <marker date="1500784356167" expanded="true" signature="2933:2964" ph="UPDATE playe... " />
-            <marker date="1500784356167" expanded="true" signature="2933:2978" ph="UPDATE playe... " />
-            <marker date="1500784356167" expanded="true" signature="2933:3027" ph="UPDATE playe... " />
-            <marker date="1500784356167" expanded="true" signature="3421:3479" ph="SELECT id FR... cities" />
-            <marker date="1500784356167" expanded="true" signature="3721:3800" ph="SELECT COUNT... city_plots" />
-            <marker date="1500784356167" expanded="true" signature="4248:4294" ph="UPDATE city_... " />
-            <marker date="1500784356167" expanded="true" signature="4248:4331" ph="UPDATE city_... " />
-            <marker date="1500784356167" expanded="true" signature="4248:4332" ph="UPDATE city_... " />
-            <marker date="1500784356167" expanded="true" signature="4248:4365" ph="UPDATE city_... " />
-            <marker date="1500784356167" expanded="true" signature="4248:4380" ph="UPDATE city_... " />
-            <marker date="1500784356167" expanded="true" signature="4603:4650" ph="UPDATE city_... " />
-            <marker date="1500784356167" expanded="true" signature="4603:4686" ph="UPDATE city_... " />
-            <marker date="1500784356167" expanded="true" signature="4603:4719" ph="UPDATE city_... " />
-            <marker date="1500784356167" expanded="true" signature="4603:4734" ph="UPDATE city_... " />
-            <marker date="1500784356167" expanded="true" signature="5006:5105" ph="INSERT INTO city_plots... " />
-            <marker date="1500784356167" expanded="true" signature="5006:5115" ph="INSERT INTO city_plots... " />
-            <marker date="1500784356167" expanded="true" signature="5006:5116" ph="INSERT INTO city_plots... " />
-            <marker date="1500784356167" expanded="true" signature="5773:5869" ph="UPDATE citie... " />
-            <marker date="1500784356167" expanded="true" signature="6434:6462" ph="SELECT city_... cities" />
+            <marker date="1500831243529" expanded="true" signature="1598:1645" ph="select * fro... players" />
+            <marker date="1500831243529" expanded="true" signature="2285:2384" ph="UPDATE playe... " />
+            <marker date="1500831243529" expanded="true" signature="2571:2619" ph="select * fro... players" />
+            <marker date="1500831243529" expanded="true" signature="2914:2943" ph="UPDATE playe... " />
+            <marker date="1500831243529" expanded="true" signature="2914:2945" ph="UPDATE playe... " />
+            <marker date="1500831243529" expanded="true" signature="2914:2972" ph="UPDATE playe... " />
+            <marker date="1500831243529" expanded="true" signature="2914:3021" ph="UPDATE playe... " />
+            <marker date="1500831243529" expanded="true" signature="3348:3406" ph="SELECT id FR... cities" />
+            <marker date="1500831243529" expanded="true" signature="3648:3727" ph="SELECT COUNT... city_plots" />
+            <marker date="1500831243529" expanded="true" signature="4175:4221" ph="UPDATE city_... " />
+            <marker date="1500831243529" expanded="true" signature="4175:4258" ph="UPDATE city_... " />
+            <marker date="1500831243529" expanded="true" signature="4175:4259" ph="UPDATE city_... " />
+            <marker date="1500831243529" expanded="true" signature="4175:4292" ph="UPDATE city_... " />
+            <marker date="1500831243529" expanded="true" signature="4175:4307" ph="UPDATE city_... " />
+            <marker date="1500831243529" expanded="true" signature="4530:4577" ph="UPDATE city_... " />
+            <marker date="1500831243529" expanded="true" signature="4530:4613" ph="UPDATE city_... " />
+            <marker date="1500831243529" expanded="true" signature="4530:4646" ph="UPDATE city_... " />
+            <marker date="1500831243529" expanded="true" signature="4530:4661" ph="UPDATE city_... " />
+            <marker date="1500831243529" expanded="true" signature="4933:5032" ph="INSERT INTO city_plots... " />
+            <marker date="1500831243529" expanded="true" signature="4933:5042" ph="INSERT INTO city_plots... " />
+            <marker date="1500831243529" expanded="true" signature="4933:5043" ph="INSERT INTO city_plots... " />
+            <marker date="1500831243529" expanded="true" signature="5700:5796" ph="UPDATE citie... " />
+            <marker date="1500831243529" expanded="true" signature="6361:6389" ph="SELECT city_... cities" />
           </folding>
         </state>
       </provider>
@@ -1041,29 +984,29 @@
           <caret line="9" column="0" lean-forward="true" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <marker date="1500784356167" expanded="true" signature="1598:1645" ph="select * fro... players" />
-            <marker date="1500784356167" expanded="true" signature="2285:2384" ph="UPDATE playe... " />
-            <marker date="1500784356167" expanded="true" signature="2571:2619" ph="select * fro... players" />
-            <marker date="1500784356167" expanded="true" signature="2933:2962" ph="UPDATE playe... " />
-            <marker date="1500784356167" expanded="true" signature="2933:2964" ph="UPDATE playe... " />
-            <marker date="1500784356167" expanded="true" signature="2933:2978" ph="UPDATE playe... " />
-            <marker date="1500784356167" expanded="true" signature="2933:3027" ph="UPDATE playe... " />
-            <marker date="1500784356167" expanded="true" signature="3421:3479" ph="SELECT id FR... cities" />
-            <marker date="1500784356167" expanded="true" signature="3721:3800" ph="SELECT COUNT... city_plots" />
-            <marker date="1500784356167" expanded="true" signature="4248:4294" ph="UPDATE city_... " />
-            <marker date="1500784356167" expanded="true" signature="4248:4331" ph="UPDATE city_... " />
-            <marker date="1500784356167" expanded="true" signature="4248:4332" ph="UPDATE city_... " />
-            <marker date="1500784356167" expanded="true" signature="4248:4365" ph="UPDATE city_... " />
-            <marker date="1500784356167" expanded="true" signature="4248:4380" ph="UPDATE city_... " />
-            <marker date="1500784356167" expanded="true" signature="4603:4650" ph="UPDATE city_... " />
-            <marker date="1500784356167" expanded="true" signature="4603:4686" ph="UPDATE city_... " />
-            <marker date="1500784356167" expanded="true" signature="4603:4719" ph="UPDATE city_... " />
-            <marker date="1500784356167" expanded="true" signature="4603:4734" ph="UPDATE city_... " />
-            <marker date="1500784356167" expanded="true" signature="5006:5105" ph="INSERT INTO city_plots... " />
-            <marker date="1500784356167" expanded="true" signature="5006:5115" ph="INSERT INTO city_plots... " />
-            <marker date="1500784356167" expanded="true" signature="5006:5116" ph="INSERT INTO city_plots... " />
-            <marker date="1500784356167" expanded="true" signature="5773:5869" ph="UPDATE citie... " />
-            <marker date="1500784356167" expanded="true" signature="6434:6462" ph="SELECT city_... cities" />
+            <marker date="1500831243529" expanded="true" signature="1598:1645" ph="select * fro... players" />
+            <marker date="1500831243529" expanded="true" signature="2285:2384" ph="UPDATE playe... " />
+            <marker date="1500831243529" expanded="true" signature="2571:2619" ph="select * fro... players" />
+            <marker date="1500831243529" expanded="true" signature="2914:2943" ph="UPDATE playe... " />
+            <marker date="1500831243529" expanded="true" signature="2914:2945" ph="UPDATE playe... " />
+            <marker date="1500831243529" expanded="true" signature="2914:2972" ph="UPDATE playe... " />
+            <marker date="1500831243529" expanded="true" signature="2914:3021" ph="UPDATE playe... " />
+            <marker date="1500831243529" expanded="true" signature="3348:3406" ph="SELECT id FR... cities" />
+            <marker date="1500831243529" expanded="true" signature="3648:3727" ph="SELECT COUNT... city_plots" />
+            <marker date="1500831243529" expanded="true" signature="4175:4221" ph="UPDATE city_... " />
+            <marker date="1500831243529" expanded="true" signature="4175:4258" ph="UPDATE city_... " />
+            <marker date="1500831243529" expanded="true" signature="4175:4259" ph="UPDATE city_... " />
+            <marker date="1500831243529" expanded="true" signature="4175:4292" ph="UPDATE city_... " />
+            <marker date="1500831243529" expanded="true" signature="4175:4307" ph="UPDATE city_... " />
+            <marker date="1500831243529" expanded="true" signature="4530:4577" ph="UPDATE city_... " />
+            <marker date="1500831243529" expanded="true" signature="4530:4613" ph="UPDATE city_... " />
+            <marker date="1500831243529" expanded="true" signature="4530:4646" ph="UPDATE city_... " />
+            <marker date="1500831243529" expanded="true" signature="4530:4661" ph="UPDATE city_... " />
+            <marker date="1500831243529" expanded="true" signature="4933:5032" ph="INSERT INTO city_plots... " />
+            <marker date="1500831243529" expanded="true" signature="4933:5042" ph="INSERT INTO city_plots... " />
+            <marker date="1500831243529" expanded="true" signature="4933:5043" ph="INSERT INTO city_plots... " />
+            <marker date="1500831243529" expanded="true" signature="5700:5796" ph="UPDATE citie... " />
+            <marker date="1500831243529" expanded="true" signature="6361:6389" ph="SELECT city_... cities" />
           </folding>
         </state>
       </provider>
@@ -1252,16 +1195,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/branwidth/EldinLand/Listeners/PlotChangeOwnerListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="28" column="82" lean-forward="false" selection-start-line="28" selection-start-column="82" selection-end-line="28" selection-end-column="82" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/branwidth/EldinLand/Listeners/PlotRemoveListener.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="459">
@@ -1280,20 +1213,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/branwidth/EldinLand/Main.java">
+    <entry file="file://$PROJECT_DIR$/src/com/branwidth/EldinLand/Listeners/PlotChangeOwnerListener.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="22" column="63" lean-forward="false" selection-start-line="22" selection-start-column="63" selection-end-line="22" selection-end-column="63" />
+        <state relative-caret-position="476">
+          <caret line="28" column="82" lean-forward="false" selection-start-line="28" selection-start-column="82" selection-end-line="28" selection-end-column="82" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/branwidth/EldinLand/Listeners/PlotRentListener.java">
+    <entry file="file://$PROJECT_DIR$/src/com/branwidth/EldinLand/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="27" column="42" lean-forward="false" selection-start-line="27" selection-start-column="42" selection-end-line="27" selection-end-column="42" />
+        <state relative-caret-position="351">
+          <caret line="22" column="63" lean-forward="false" selection-start-line="22" selection-start-column="63" selection-end-line="22" selection-end-column="63" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1302,33 +1235,43 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/branwidth/EldinLand/MySQL.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="759">
-          <caret line="125" column="58" lean-forward="true" selection-start-line="125" selection-start-column="58" selection-end-line="125" selection-end-column="58" />
+        <state relative-caret-position="0">
+          <caret line="88" column="131" lean-forward="true" selection-start-line="88" selection-start-column="131" selection-end-line="88" selection-end-column="131" />
           <folding>
             <element signature="imports" expanded="true" />
-            <marker date="1500784356167" expanded="true" signature="1598:1645" ph="select * fro... players" />
-            <marker date="1500784356167" expanded="true" signature="2285:2384" ph="UPDATE playe... " />
-            <marker date="1500784356167" expanded="true" signature="2571:2619" ph="select * fro... players" />
-            <marker date="1500784356167" expanded="true" signature="2933:2962" ph="UPDATE playe... " />
-            <marker date="1500784356167" expanded="true" signature="2933:2964" ph="UPDATE playe... " />
-            <marker date="1500784356167" expanded="true" signature="2933:2978" ph="UPDATE playe... " />
-            <marker date="1500784356167" expanded="true" signature="2933:3027" ph="UPDATE playe... " />
-            <marker date="1500784356167" expanded="true" signature="3421:3479" ph="SELECT id FR... cities" />
-            <marker date="1500784356167" expanded="true" signature="3721:3800" ph="SELECT COUNT... city_plots" />
-            <marker date="1500784356167" expanded="true" signature="4248:4294" ph="UPDATE city_... " />
-            <marker date="1500784356167" expanded="true" signature="4248:4331" ph="UPDATE city_... " />
-            <marker date="1500784356167" expanded="true" signature="4248:4332" ph="UPDATE city_... " />
-            <marker date="1500784356167" expanded="true" signature="4248:4365" ph="UPDATE city_... " />
-            <marker date="1500784356167" expanded="true" signature="4248:4380" ph="UPDATE city_... " />
-            <marker date="1500784356167" expanded="true" signature="4603:4650" ph="UPDATE city_... " />
-            <marker date="1500784356167" expanded="true" signature="4603:4686" ph="UPDATE city_... " />
-            <marker date="1500784356167" expanded="true" signature="4603:4719" ph="UPDATE city_... " />
-            <marker date="1500784356167" expanded="true" signature="4603:4734" ph="UPDATE city_... " />
-            <marker date="1500784356167" expanded="true" signature="5006:5105" ph="INSERT INTO city_plots... " />
-            <marker date="1500784356167" expanded="true" signature="5006:5115" ph="INSERT INTO city_plots... " />
-            <marker date="1500784356167" expanded="true" signature="5006:5116" ph="INSERT INTO city_plots... " />
-            <marker date="1500784356167" expanded="true" signature="5773:5869" ph="UPDATE citie... " />
-            <marker date="1500784356167" expanded="true" signature="6434:6462" ph="SELECT city_... cities" />
+            <marker date="1500831243529" expanded="true" signature="1598:1645" ph="select * fro... players" />
+            <marker date="1500831243529" expanded="true" signature="2285:2384" ph="UPDATE playe... " />
+            <marker date="1500831243529" expanded="true" signature="2571:2619" ph="select * fro... players" />
+            <marker date="1500831243529" expanded="true" signature="2914:2943" ph="UPDATE playe... " />
+            <marker date="1500831243529" expanded="true" signature="2914:2945" ph="UPDATE playe... " />
+            <marker date="1500831243529" expanded="true" signature="2914:2972" ph="UPDATE playe... " />
+            <marker date="1500831243529" expanded="true" signature="2914:3021" ph="UPDATE playe... " />
+            <marker date="1500831243529" expanded="true" signature="3348:3406" ph="SELECT id FR... cities" />
+            <marker date="1500831243529" expanded="true" signature="3648:3727" ph="SELECT COUNT... city_plots" />
+            <marker date="1500831243529" expanded="true" signature="4175:4221" ph="UPDATE city_... " />
+            <marker date="1500831243529" expanded="true" signature="4175:4258" ph="UPDATE city_... " />
+            <marker date="1500831243529" expanded="true" signature="4175:4259" ph="UPDATE city_... " />
+            <marker date="1500831243529" expanded="true" signature="4175:4292" ph="UPDATE city_... " />
+            <marker date="1500831243529" expanded="true" signature="4175:4307" ph="UPDATE city_... " />
+            <marker date="1500831243529" expanded="true" signature="4530:4577" ph="UPDATE city_... " />
+            <marker date="1500831243529" expanded="true" signature="4530:4613" ph="UPDATE city_... " />
+            <marker date="1500831243529" expanded="true" signature="4530:4646" ph="UPDATE city_... " />
+            <marker date="1500831243529" expanded="true" signature="4530:4661" ph="UPDATE city_... " />
+            <marker date="1500831243529" expanded="true" signature="4933:5032" ph="INSERT INTO city_plots... " />
+            <marker date="1500831243529" expanded="true" signature="4933:5042" ph="INSERT INTO city_plots... " />
+            <marker date="1500831243529" expanded="true" signature="4933:5043" ph="INSERT INTO city_plots... " />
+            <marker date="1500831243529" expanded="true" signature="5700:5796" ph="UPDATE citie... " />
+            <marker date="1500831243529" expanded="true" signature="6361:6389" ph="SELECT city_... cities" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/branwidth/EldinLand/Listeners/PlotRentListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="215">
+          <caret line="18" column="75" lean-forward="true" selection-start-line="18" selection-start-column="75" selection-end-line="18" selection-end-column="75" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
