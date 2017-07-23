@@ -3,6 +3,7 @@ package com.branwidth.EldinLand.Listeners;
 import com.bekvon.bukkit.residence.event.ResidenceRentEvent;
 import com.branwidth.EldinLand.Main;
 import com.branwidth.EldinLand.MySQL;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -52,11 +53,15 @@ public class PlotRentListener implements Listener {
         } else if (rentType.equals(UNRENT) || rentType.equals(RENT_EXPIRE)) {
             // Change player city land count
             MySQL.changePlayerCityLand(pUUID, -plotSize);
-            p.sendMessage(preMessage + "§A Removed §6" + plotSize + "§A tiles from §6 City §A land");
-            Long totalCityLand = playerCityLand - plotSize;
-            p.sendMessage(preMessage + "§A New City tile count: §6" + totalCityLand);
-            // Change town plot details
             MySQL.changeCityPlot(townName, plotSize, pUUID, false);
+            try {
+                p.sendMessage(preMessage + "§A Removed §6" + plotSize + "§A tiles from §6 City §A land");
+                Long totalCityLand = playerCityLand - plotSize;
+                p.sendMessage(preMessage + "§A New City tile count: §6" + totalCityLand);
+            } catch(Exception e) {
+                Bukkit.getLogger().info(p.getName() + "was not online when rent expired.");
+            }
+            // Change town plot details
         }
 
 
