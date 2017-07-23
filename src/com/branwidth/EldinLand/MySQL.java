@@ -1,5 +1,6 @@
 package com.branwidth.EldinLand;
 
+import com.mysql.jdbc.MySQLConnection;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
@@ -109,18 +110,26 @@ public class MySQL {
             ownsLand = true;
         }
 
-        // Set prepared statement for adding land into city tables
-//        PrepasredStatement psAddCityLand = MySQL.getConnection().prepareStatement();
-
+        // Checks if the player already owns land in the town
         if (ownsLand) {
+            // Check if we are adding land
             if (addLand) {
-                // Add land to existing count
+                PreparedStatement psOwnAdd = MySQL.getConnection().prepareStatement(
+                        "UPDATE city_plots SET plot_tiles = plot_tiles +" + tileCount + " WHERE (player_id = " + playerID + ") AND (city_id = " + cityID + ")");
+                psOwnAdd.execute();
+                // Check if we are removing land
             } else {
-                // remove land from existing amount
+                PreparedStatement psOwnRemove = MySQL.getConnection().prepareStatement(
+                        "UPDATE city_plots SET plot_tiles = plot_tiles -" + tileCount + "WHERE (player_id = " + playerID + ") AND (city_id = " + cityID + ")");
+                psOwnRemove.execute();
             }
+            // If player doesn't own land in that city yet
         } else {
             if (addLand) {
-                // add a new record to the existing table
+                PreparedStatement psNoOwnAdd = MySQL.getConnection().prepareStatement(
+                        "INSERT INTO city_plots SET plot_tiles = " + tileCount + ", player_id = " + playerID + ", city_id = " + cityID);
+                psNoOwnAdd.execute();
+                // God I hope this never executes...
             } else {
                 Player p = Bukkit.getPlayer(pUUID);
                 p.sendMessage(ChatColor.RED + "Something went wrong... Submit a ticket about MySQL Class Errors and City Land with the Eldin Land Plugin");
@@ -128,8 +137,32 @@ public class MySQL {
         }
     }
 
-    public static void changeCitySize(String pUUID, Long Count, String playerWorld, String townName) {
-        // "UPDATE cities SET total_tiles = total_tiles + "Count" WHERE town_name = '"townName + "'"
+    public static void changeCitySize(String pUUID, Long Count, String playerWorld, String townName) throws SQLException {
+        // Set MySQL statement for adding city land to a town (Town expansion)
+        PreparedStatement psChangeCitySize = MySQL.getConnection().prepareStatement(
+                "UPDATE cities SET total_tiles = total_tiles + " + Count + " WHERE town_name = '" + townName + "'");
+        psChangeCitySize.execute();
+
+        // Also add wild land to a players total tiles.  May not need this.
+        MySQL.changePlayerWildLand(pUUID, Count, playerWorld);
+        // "UPDATE cities SET total_tiles = total_tiles + " + Count + " WHERE town_name = '" + townName + "'"
+    }
+
+    // Check to see if a plot is registered as a city
+    public static Boolean isCity(String townName) throws SQLException {
+        // Statement for if a plot is a city
+        PreparedStatement psCityNames = MySQL.getConnection().prepareStatement(
+                "SELECT city_name FROM cities");
+        ResultSet rsCityNames = psCityNames.executeQuery();
+        // for each row in the cities table
+        while (rsCityNames.next()) {
+            // Get city name and check to current plot name
+            if (rsCityNames.getString("city_name").equals(townName)) {
+                // return true if it exists
+                return true;
+            }
+        }
+        return false;
     }
 
     public static void changePlotOwner() throws SQLException {
