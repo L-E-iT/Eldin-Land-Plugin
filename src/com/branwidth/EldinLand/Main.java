@@ -21,6 +21,7 @@ public class Main extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new PlotChangeSizeListener(), this);
         getServer().getPluginManager().registerEvents(new PlotChangeOwnerListener(), this);
         getServer().getPluginManager().registerEvents(new PlotRentListener(), this);
+        // §A Green §6 Gold
     }
 
 

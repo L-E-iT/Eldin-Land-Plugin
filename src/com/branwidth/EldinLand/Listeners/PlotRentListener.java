@@ -7,6 +7,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import static com.bekvon.bukkit.residence.event.ResidenceRentEvent.RentEventType.RENT;
@@ -35,14 +36,25 @@ public class PlotRentListener implements Listener {
             MySQL.connect();
         }
 
+        ResultSet rsPlayerCityLand = MySQL.getPlayerLand(pUUID);
+        rsPlayerCityLand.next();
+        Long playerCityLand = rsPlayerCityLand.getLong("city_count");
+
+//        §A Green §6 Gold
         if (rentType.equals(RENT)) {
             // Change player city land count
             MySQL.changePlayerCityLand(pUUID, plotSize);
+            p.sendMessage(preMessage + "§A Added §6" + plotSize + "§A tiles to §6 City §A land");
+            Long totalCityLand = playerCityLand + plotSize;
+            p.sendMessage(preMessage + "§A New City tile count: §6" + totalCityLand);
             // Change town plot details
             MySQL.changeCityPlot(townName, plotSize, pUUID, true);
         } else if (rentType.equals(UNRENT) || rentType.equals(RENT_EXPIRE)) {
             // Change player city land count
             MySQL.changePlayerCityLand(pUUID, -plotSize);
+            p.sendMessage(preMessage + "§A Removed §6" + plotSize + "§A tiles from §6 City §A land");
+            Long totalCityLand = playerCityLand - plotSize;
+            p.sendMessage(preMessage + "§A New City tile count: §6" + totalCityLand);
             // Change town plot details
             MySQL.changeCityPlot(townName, plotSize, pUUID, false);
         }
