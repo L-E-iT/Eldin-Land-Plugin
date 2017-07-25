@@ -56,7 +56,11 @@ public class MySQL {
         // get result set of a players land
         PreparedStatement PSland = MySQL.getConnection().prepareStatement("select * from players WHERE uuid='" + uuid + "'");
         ResultSet RSland = PSland.executeQuery();
-        return RSland;
+        if (RSland.isBeforeFirst()) {
+            return RSland;
+        } else {
+            return null;
+        }
     }
 
     public static String getPlayerWorld(String playerWorldName) {
@@ -79,15 +83,27 @@ public class MySQL {
     }
 
     private static int getPlayerID(String pUUID) throws SQLException {
-        PreparedStatement PSplayer = MySQL.getConnection().prepareStatement("select * from players WHERE uuid='" + pUUID + "'");
-        ResultSet RSplayer = PSplayer.executeQuery();
-        RSplayer.next();
-        return RSplayer.getInt("id");
+        try {
+            PreparedStatement PSplayer = MySQL.getConnection().prepareStatement("select * from players WHERE uuid='" + pUUID + "'");
+            ResultSet RSplayer = PSplayer.executeQuery();
+            RSplayer.next();
+            return RSplayer.getInt("id");
+        } catch (Exception e) {
+            return 0;
+        }
     }
 
     public static void changePlayerCityLand(String pUUID, Long tileCount) throws SQLException {
+
+        if (getPlayerID(pUUID) == 0) {
+            PreparedStatement ps = MySQL.getConnection().prepareStatement("INSERT players SET city_count = city_count + " + tileCount +
+                    " WHERE uuid = '" + pUUID + "'");
+            ps.execute();
+        }
+
         PreparedStatement ps = MySQL.getConnection().prepareStatement("UPDATE players SET city_count = city_count + " + tileCount +
                 " WHERE uuid = '" + pUUID + "'");
+        ps.execute();
     }
 
     public static void changeCityPlot(String townName, Long tileCount, String pUUID, Boolean addLand) throws SQLException {
