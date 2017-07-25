@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="jar" name="Eldin-Land-Plugin:jar">
-    <output-path>$PROJECT_DIR$/out/artifacts/Eldin_Land_Plugin_jar</output-path>
-    <root id="archive" name="Eldin-Land-Plugin.jar">
-      <element id="module-output" name="Eldin-Land-Plugin" />
-    </root>
-  </artifact>
-</component>
