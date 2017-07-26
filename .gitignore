@@ -8,7 +8,6 @@
 
 *.idea/
 *.idea
-*.idea/*.xml
 
 # Package Files #
 *.jar
