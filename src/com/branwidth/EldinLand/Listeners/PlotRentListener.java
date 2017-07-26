@@ -1,9 +1,11 @@
 package com.branwidth.EldinLand.Listeners;
 
+import com.bekvon.bukkit.residence.Residence;
 import com.bekvon.bukkit.residence.event.ResidenceRentEvent;
 import com.branwidth.EldinLand.Main;
 import com.branwidth.EldinLand.MySQL;
 import org.bukkit.Bukkit;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -11,9 +13,7 @@ import org.bukkit.event.Listener;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import static com.bekvon.bukkit.residence.event.ResidenceRentEvent.RentEventType.RENT;
-import static com.bekvon.bukkit.residence.event.ResidenceRentEvent.RentEventType.RENT_EXPIRE;
-import static com.bekvon.bukkit.residence.event.ResidenceRentEvent.RentEventType.UNRENT;
+import static com.bekvon.bukkit.residence.event.ResidenceRentEvent.RentEventType.*;
 
 public class PlotRentListener implements Listener {
 
@@ -23,6 +23,7 @@ public class PlotRentListener implements Listener {
         // Get basic variables
         Long playerCityLand = 0L;
         Player p = event.getPlayer();
+        String pName = p.getPlayer().getName();
         String plotOwner = event.getResidence().getOwner();
         String pUUID = p.getUniqueId().toString().replace("-","");
         String preMessage = Main.getPlugin().getConfig().getString("MessagesConfig.PreMessage");
@@ -31,8 +32,6 @@ public class PlotRentListener implements Listener {
         Long plotSize = event.getResidence().getXZSize();
         Player townOwner = event.getResidence().getParent().getRPlayer().getPlayer();
         String townName = event.getResidence().getParent().getResidenceName();
-        p.sendMessage(townOwner.getName());
-        p.sendMessage(townName);
 
         if (!MySQL.isConnected()) {
             MySQL.connect();
@@ -43,31 +42,31 @@ public class PlotRentListener implements Listener {
         } else {
             while (rsPlayerCityLand.next()) {
                 playerCityLand = rsPlayerCityLand.getLong("city_count");
-                p.sendMessage("Test1");
             }
         }
 
 //        §A Green §6 Gold
         if (rentType.equals(RENT)) {
             // Change player city land count
-            MySQL.changePlayerCityLand(pUUID, plotSize);
+            MySQL.changePlayerCityLand(pUUID, plotSize, pName);
             p.sendMessage(preMessage + "§A Added §6" + plotSize + "§A tiles to §6City§A land");
             Long totalCityLand = playerCityLand + plotSize;
             p.sendMessage(preMessage + "§A New City tile count: §6" + totalCityLand);
             // Change town plot details
             MySQL.changeCityPlot(townName, plotSize, pUUID, true);
-            p.sendMessage("test2");
-        } else if (rentType.equals(UNRENT) || rentType.equals(RENT_EXPIRE)) {
+        } else if (rentType.equals(UNRENT) || rentType.equals(RENT_EXPIRE) || rentType.equals(UNRENTABLE)) {
             // Change player city land count
-            MySQL.changePlayerCityLand(pUUID, -plotSize);
-            MySQL.changeCityPlot(townName, plotSize, pUUID, false);
-            try {
-                p.sendMessage(preMessage + "§A Removed §6" + plotSize + "§A tiles from §6 City §A land");
-                Long totalCityLand = playerCityLand - plotSize;
-                p.sendMessage(preMessage + "§A New City tile count: §6" + totalCityLand);
-            } catch(Exception e) {
-                Bukkit.getLogger().info(p.getName() + "was not online when rent expired.");
+            if (!plotOwner.equals(p.getPlayer().getName())) {
+                MySQL.changePlayerCityLand(pUUID, -plotSize, pName);
+                MySQL.changeCityPlot(townName, plotSize, pUUID, false);
+                if (p.isOnline()) {
+                    p.sendMessage(preMessage + "§A Removed §6" + plotSize + "§A tiles from §6 City §A land");
+                    Long totalCityLand = playerCityLand - plotSize;
+                    p.sendMessage(preMessage + "§A New City tile count: §6" + totalCityLand);
+                }
+            } else {
             }
+
             // Change town plot details
         }
 

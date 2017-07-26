@@ -91,19 +91,22 @@ public class MySQL {
         } catch (Exception e) {
             return 0;
         }
+//"INSERT INTO city_plots SET plot_tiles = " + tileCount + ", player_id = " + playerID + ", city_id = " + cityID);
+
     }
 
-    public static void changePlayerCityLand(String pUUID, Long tileCount) throws SQLException {
+    public static void changePlayerCityLand(String pUUID, Long tileCount, String playerName) throws SQLException {
 
         if (getPlayerID(pUUID) == 0) {
-            PreparedStatement ps = MySQL.getConnection().prepareStatement("INSERT players SET city_count = city_count + " + tileCount +
+            PreparedStatement ps = MySQL.getConnection().prepareStatement("INSERT INTO players SET username = '" + playerName +
+                    "', uuid = '"  + pUUID + "', city_count = " + tileCount);
+            ps.execute();
+        } else {
+            Main.getPlugin().getLogger().info("changePlayerCityLand else called!");
+            PreparedStatement ps = MySQL.getConnection().prepareStatement("UPDATE players SET city_count = city_count + " + tileCount +
                     " WHERE uuid = '" + pUUID + "'");
             ps.execute();
         }
-
-        PreparedStatement ps = MySQL.getConnection().prepareStatement("UPDATE players SET city_count = city_count + " + tileCount +
-                " WHERE uuid = '" + pUUID + "'");
-        ps.execute();
     }
 
     public static void changeCityPlot(String townName, Long tileCount, String pUUID, Boolean addLand) throws SQLException {
@@ -117,13 +120,14 @@ public class MySQL {
         int cityID = rsID.getInt("id");
 
         // Will get if a player owns land in a city
-        PreparedStatement psOwnLand = MySQL.getConnection().prepareStatement("SELECT COUNT(*) FROM city_plots WHERE city_id = " + cityID + " AND player_id = " + playerID);
+        PreparedStatement psOwnLand = MySQL.getConnection().prepareStatement("SELECT COUNT(*) as count FROM city_plots WHERE city_id = " + cityID + " AND player_id = " + playerID);
         ResultSet rsOwnLand = psOwnLand.executeQuery();
         rsOwnLand.next();
         if (rsOwnLand.getInt("count") > 0) {
             ownsLand = true;
         }
 
+        Main.getPlugin().getLogger().info("Made it!");
         // Checks if the player already owns land in the town
         if (ownsLand) {
             // Check if we are adding land
@@ -134,14 +138,15 @@ public class MySQL {
                 // Check if we are removing land
             } else {
                 PreparedStatement psOwnRemove = MySQL.getConnection().prepareStatement(
-                        "UPDATE city_plots SET plot_tiles = plot_tiles -" + tileCount + "WHERE (player_id = " + playerID + ") AND (city_id = " + cityID + ")");
+                        "UPDATE city_plots SET plot_tiles = plot_tiles -" + tileCount + " WHERE " + " (player_id = " + playerID + " AND city_id = " + cityID + ")");
+                Main.getPlugin().getLogger().info("Removing Land");
                 psOwnRemove.execute();
             }
             // If player doesn't own land in that city yet
         } else {
             if (addLand) {
                 PreparedStatement psNoOwnAdd = MySQL.getConnection().prepareStatement(
-                        "INSERT INTO city_plots SET plot_tiles = " + tileCount + ", player_id = " + playerID + ", city_id = " + cityID);
+                        "INSERT INTO city_plots SET plot_tiles = " + tileCount + ", player_id = '" + playerID + "', city_id = " + cityID);
                 psNoOwnAdd.execute();
                 // God I hope this never executes...
             } else {
