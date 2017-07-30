@@ -1,6 +1,5 @@
 package com.branwidth.EldinLand;
 
-import com.mysql.jdbc.MySQLConnection;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
@@ -91,8 +90,6 @@ public class MySQL {
         } catch (Exception e) {
             return 0;
         }
-//"INSERT INTO city_plots SET plot_tiles = " + tileCount + ", player_id = " + playerID + ", city_id = " + cityID);
-
     }
 
     public static void changePlayerCityLand(String pUUID, Long tileCount, String playerName) throws SQLException {
@@ -141,6 +138,10 @@ public class MySQL {
                         "UPDATE city_plots SET plot_tiles = plot_tiles -" + tileCount + " WHERE " + " (player_id = " + playerID + " AND city_id = " + cityID + ")");
                 Main.getPlugin().getLogger().info("Removing Land");
                 psOwnRemove.execute();
+                if (playerCityPlotAmount(playerID,cityID)==0) {
+                    PreparedStatement psRemovePlot = MySQL.getConnection().prepareStatement("DELETE FROM city_plots WHERE (city_id = " + cityID + ") AND (player_id =" + playerID +" )");
+                    psRemovePlot.execute();
+                }
             }
             // If player doesn't own land in that city yet
         } else {
@@ -148,8 +149,8 @@ public class MySQL {
                 PreparedStatement psNoOwnAdd = MySQL.getConnection().prepareStatement(
                         "INSERT INTO city_plots SET plot_tiles = " + tileCount + ", player_id = '" + playerID + "', city_id = " + cityID);
                 psNoOwnAdd.execute();
-                // God I hope this never executes...
             } else {
+                // God I hope this never executes...
                 Player p = Bukkit.getPlayer(pUUID);
                 p.sendMessage(ChatColor.RED + "Something went wrong... Submit a ticket about MySQL Class Errors and City Land with the Eldin Land Plugin");
             }
@@ -186,6 +187,39 @@ public class MySQL {
 
     public static void changePlotOwner() throws SQLException {
 
+    }
+
+    public static void changeAvailableCityLand() throws SQLException {
+
+    }
+
+    public static int playerCityPlotAmount(int playerID, int cityID) throws SQLException {
+        try {
+            PreparedStatement PScityPlotAmount = MySQL.getConnection().prepareStatement("SELECT * FROM city_plots");
+            ResultSet RScityPlotAmount = PScityPlotAmount.executeQuery();
+            while (RScityPlotAmount.next()) {
+                if (RScityPlotAmount.getInt("city_id") == cityID && RScityPlotAmount.getInt("player_id") == playerID) {
+                    return RScityPlotAmount.getInt("plot_tiles");
+                }
+            }
+        } catch (Exception e) {
+            Main.getPlugin().getLogger().info("MySQL Failed to get city ID");
+            return 1;
+        }
+        Main.getPlugin().getLogger().info("playerCityPlotAmount did not work in MySQL.java");
+        return 1;
+
+    }
+
+    public static int getCityID(String townName) {
+        try {
+            PreparedStatement PScity = MySQL.getConnection().prepareStatement("SELECT id FROM cities WHERE city_name = '" + townName + "'");
+            ResultSet RScity = PScity.executeQuery();
+            RScity.next();
+            return RScity.getInt("id");
+        } catch (Exception e) {
+            return 0;
+        }
     }
 
 }
