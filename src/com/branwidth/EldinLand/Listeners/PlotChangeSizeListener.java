@@ -1,5 +1,6 @@
 package com.branwidth.EldinLand.Listeners;
 
+import com.bekvon.bukkit.residence.Residence;
 import com.bekvon.bukkit.residence.event.ResidenceOwnerChangeEvent;
 import com.bekvon.bukkit.residence.event.ResidenceSizeChangeEvent;
 import com.bekvon.bukkit.residence.protection.CuboidArea;
@@ -48,6 +49,12 @@ public class PlotChangeSizeListener implements Listener {
                 // Send message to player about new land values
                 p.sendMessage(preMessage + "§A Your old§6 " + playerWorldReplaced + " §Aland count was: §6" + oldLand + " §ATiles.");
                 p.sendMessage(preMessage + "§A Your new§6 " + playerWorldReplaced + " §Aland count is: §6" + newLand + " §ATiles.");
+            }
+            if (MySQL.isCity(event.getResidenceName())) {
+                MySQL.changeCitySize(pUUID,newArea,playerWorld, event.getResidenceName());
+                Long totalSize = Residence.getInstance().getResidenceManager().getByName(event.getResidenceName()).getXZSize();
+                p.sendMessage(preMessage + "§A New size of §6" + event.getResidenceName() + "§A is:§6 " + totalSize);
+
             }
             //§A Green §6 Gold
         }

@@ -69,7 +69,7 @@ public class MySQL {
             case "world_nether":
                 return "nether_count";
             case "world_the_end":
-                return "end_cound";
+                return "end_count";
             default:
                 return null;
         }
@@ -162,10 +162,6 @@ public class MySQL {
         PreparedStatement psChangeCitySize = MySQL.getConnection().prepareStatement(
                 "UPDATE cities SET total_tiles = total_tiles + " + Count + " WHERE town_name = '" + townName + "'");
         psChangeCitySize.execute();
-
-        // Also add wild land to a players total tiles.  May not need this.
-        MySQL.changePlayerWildLand(pUUID, Count, playerWorld);
-        // "UPDATE cities SET total_tiles = total_tiles + " + Count + " WHERE town_name = '" + townName + "'"
     }
 
     // Check to see if a plot is registered as a city
@@ -183,14 +179,6 @@ public class MySQL {
             }
         }
         return false;
-    }
-
-    public static void changePlotOwner() throws SQLException {
-
-    }
-
-    public static void changeAvailableCityLand() throws SQLException {
-
     }
 
     public static int playerCityPlotAmount(int playerID, int cityID) throws SQLException {
@@ -212,6 +200,7 @@ public class MySQL {
     }
 
     public static int getCityID(String townName) {
+        // May not be needed.
         try {
             PreparedStatement PScity = MySQL.getConnection().prepareStatement("SELECT id FROM cities WHERE city_name = '" + townName + "'");
             ResultSet RScity = PScity.executeQuery();
