@@ -15,6 +15,7 @@ public class Main extends JavaPlugin {
         MySQL.connect();
         // Specifying commands for the plugin
         getCommand("Land").setExecutor(new Land());
+        getCommand("Rank").setExecutor(new Land());
         //Register Listeners
         getServer().getPluginManager().registerEvents(new PlotCreateListener(), this);
         getServer().getPluginManager().registerEvents(new PlotRemoveListener(), this);
