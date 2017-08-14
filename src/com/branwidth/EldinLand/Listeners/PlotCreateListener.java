@@ -22,6 +22,13 @@ public class PlotCreateListener implements Listener {
     @EventHandler
     public void onCreationEvent(ResidenceCreationEvent event) throws SQLException {
 
+        // Ensure that the MySQL database connection is established
+        MySQL.connect();
+        if (!MySQL.isConnected()) {
+            MySQL.connect();
+        }
+
+
         //variable initialization
         Player p = event.getPlayer();
         String pUUID = p.getUniqueId().toString().replace("-","");
@@ -34,8 +41,9 @@ public class PlotCreateListener implements Listener {
         Double zHighLoc;
         Double xLowLoc;
         Double zLowLoc;
-        String playerWorld = MySQL.getPlayerWorld(p.getWorld().getName());
         String playerWorldReplaced = null;
+
+        String playerWorld = MySQL.getPlayerWorld(p.getWorld().getName());
 
         if (playerWorld == null) {
             event.setCancelled(true);

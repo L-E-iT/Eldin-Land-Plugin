@@ -21,6 +21,12 @@ public class PlotChangeSizeListener implements Listener {
     @EventHandler
     public void onChangeSizeEvent(ResidenceSizeChangeEvent event) throws SQLException {
 
+        // Ensure that the MySQL database connection is established
+        MySQL.connect();
+        if (!MySQL.isConnected()) {
+            MySQL.connect();
+        }
+
         // Get Variables
         Player p = event.getPlayer();
         String pUUID = p.getUniqueId().toString().replace("-","");
@@ -29,11 +35,6 @@ public class PlotChangeSizeListener implements Listener {
         String preMessage = Main.getPlugin().getConfig().getString("MessagesConfig.PreMessage");
         Long oldArea = event.getOldArea().getSize();
         Long newArea = event.getNewArea().getSize() - oldArea;
-
-        // Ensure that the MySQL database connection is established
-        if (!MySQL.isConnected()) {
-            MySQL.connect();
-        }
 
         if (!Objects.equals(p.getName(), event.getResidence().getOwner())) {
 
@@ -58,5 +59,6 @@ public class PlotChangeSizeListener implements Listener {
             }
             //§A Green §6 Gold
         }
+        MySQL.disconnect();
     }
 }

@@ -20,6 +20,13 @@ public class PlotRentListener implements Listener {
     @EventHandler
     public void onRentEvent(ResidenceRentEvent event) throws SQLException {
 
+        // Ensure that the MySQL database connection is established
+        MySQL.connect();
+        if (!MySQL.isConnected()) {
+            MySQL.connect();
+        }
+
+
         // Get basic variables
         Long playerCityLand = 0L;
         Player p = event.getPlayer();
@@ -32,10 +39,6 @@ public class PlotRentListener implements Listener {
         Long plotSize = event.getResidence().getXZSize();
         Player townOwner = event.getResidence().getParent().getRPlayer().getPlayer();
         String townName = event.getResidence().getParent().getResidenceName();
-
-        if (!MySQL.isConnected()) {
-            MySQL.connect();
-        }
 
         ResultSet rsPlayerCityLand = MySQL.getPlayerLand(pUUID);
         if (rsPlayerCityLand == null) {
@@ -69,6 +72,8 @@ public class PlotRentListener implements Listener {
 
             // Change town plot details
         }
+
+        MySQL.disconnect();
 
 
     }

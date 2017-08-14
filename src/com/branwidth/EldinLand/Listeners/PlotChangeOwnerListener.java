@@ -19,6 +19,13 @@ public class PlotChangeOwnerListener implements Listener {
     @EventHandler
     public void onChangeOwnerEvent(ResidenceOwnerChangeEvent event) throws SQLException {
 
+        // Ensure that the MySQL database connection is established
+        MySQL.connect();
+        if (!MySQL.isConnected()) {
+            MySQL.connect();
+        }
+
+
         String pNewName = event.getNewOwner();
         Player pNew = (Player) Residence.getInstance().getOfflinePlayer(pNewName);
         String pNewUUID = pNew.getUniqueId().toString().replace("-","");
@@ -36,9 +43,6 @@ public class PlotChangeOwnerListener implements Listener {
 
         String preMessage = Main.getPlugin().getConfig().getString("MessagesConfig.PreMessage");
 
-        if (!MySQL.isConnected()) {
-            MySQL.connect();
-        }
 
         if (event.getResidence().isSubzone()) {
             // Bought or sold city land
@@ -87,5 +91,6 @@ public class PlotChangeOwnerListener implements Listener {
             pNew.sendMessage(preMessage + "§A Added §6" + tileCount + "§A tiles to " + StringUtils.capitalize(playerWorldReplaced) + " land.");
             pNew.sendMessage(preMessage + "§A New " + StringUtils.capitalize(playerWorldReplaced) + " Land Count: §6" + newPlayerNewLandCount);
         }
+        MySQL.disconnect();
     }
 }

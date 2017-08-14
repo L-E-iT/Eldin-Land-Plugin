@@ -12,14 +12,17 @@ public class Land implements CommandExecutor {
 
 
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+        // Ensure that the MySQL database connection is established
+        MySQL.connect();
+        if (!MySQL.isConnected()) {
+            MySQL.connect();
+        }
+
 
         Player p = (Player) sender;
         String pName = p.getUniqueId().toString().replace("-","");
 
         String wildLand,cityLand,netherLand,endLand,totalLand;
-        if (!MySQL.isConnected()) {
-            MySQL.connect();
-        }
 
         if (MySQL.isConnected()) {
             try {
@@ -47,7 +50,6 @@ public class Land implements CommandExecutor {
         } else {
             p.sendMessage(ChatColor.RED + "There was an issue connecting to the database!");
         }
-
         return true;
         }
     }

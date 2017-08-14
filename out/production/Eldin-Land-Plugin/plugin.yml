@@ -8,3 +8,6 @@ commands:
       Land:
                description: Shows the player how much land they own
                usage: /land
+      Rank:
+              description: Gives the player a rank
+              usage: /rank [land type]

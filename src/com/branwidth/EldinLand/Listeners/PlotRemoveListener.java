@@ -17,19 +17,21 @@ public class PlotRemoveListener implements Listener {
     @EventHandler
     public void onRemoveEvent(ResidenceDeleteEvent event) throws SQLException {
 
+        // Ensure that the MySQL database connection is established
+        MySQL.connect();
+        if (!MySQL.isConnected()) {
+            MySQL.connect();
+        }
+
+
         Player p = event.getPlayer();
         String pUUID = p.getUniqueId().toString().replace("-","");
         long plotArea = event.getResidence().getMainArea().getSize();
         String playerWorld = MySQL.getPlayerWorld(p.getWorld().getName());
         String playerWorldReplaced = playerWorld.replace("_count","");
         String preMessage = Main.getPlugin().getConfig().getString("MessagesConfig.PreMessage");
+
         ResultSet RSland = MySQL.getPlayerLand(pUUID);
-
-
-
-        if (!MySQL.isConnected()) {
-            MySQL.connect();
-        }
         if (MySQL.isConnected()) {
             while (RSland.next()) {
                 if (p.getName().equals(event.getResidence().getOwner())) {
@@ -43,8 +45,6 @@ public class PlotRemoveListener implements Listener {
 
 
         }
-
-
     }
 
 }

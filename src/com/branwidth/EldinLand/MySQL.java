@@ -27,12 +27,13 @@ public class MySQL {
                 conn = DriverManager.getConnection(dbUrl);
             } catch (SQLException e) {
                 e.printStackTrace();
+                Main.getPlugin().getLogger().info("The issue is in mysql class");
             }
         }
     }
 
     //Disconnecting
-    static void disconnect() {
+    public static void disconnect() {
         if (isConnected()) {
             try {
                 conn.close();
