@@ -6,11 +6,14 @@ import com.bekvon.bukkit.residence.protection.ClaimedResidence;
 import com.bekvon.bukkit.residence.protection.CuboidArea;
 import com.branwidth.EldinLand.Main;
 import com.branwidth.EldinLand.MySQL;
+import net.milkbowl.vault.economy.Economy;
+import org.apache.commons.lang.ObjectUtils;
 import org.apache.commons.lang.StringUtils;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import net.milkbowl.vault.*;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -29,6 +32,7 @@ public class PlotCreateListener implements Listener {
         }
 
 
+
         //variable initialization
         Player p = event.getPlayer();
         String pUUID = p.getUniqueId().toString().replace("-","");
@@ -42,8 +46,14 @@ public class PlotCreateListener implements Listener {
         Double xLowLoc;
         Double zLowLoc;
         String playerWorldReplaced = null;
+        double playerBalance = Main.econ.getBalance(p);
 
         String playerWorld = MySQL.getPlayerWorld(p.getWorld().getName());
+
+        if (playerBalance < event.getResidence().getXZSize()*30) {
+            event.setCancelled(true);
+            p.sendMessage(ChatColor.RED + "You do not have enough Trade Bars!");
+        }
 
         if (playerWorld == null) {
             event.setCancelled(true);
@@ -76,14 +86,17 @@ public class PlotCreateListener implements Listener {
             if(MySQL.isConnected()) {
 //                PreparedStatement PSselect = MySQL.getConnection().prepareStatement("select * from players WHERE uuid='" + pUUID + "'");
                 ResultSet RSselect = MySQL.getPlayerLand(pUUID);
-                while (RSselect.next()) {
+                if (RSselect == null) {
                     // get area of plot
                     Long plotArea = newArea.getSize();
                     // get Wild tile values
-                    Long prevWildLand = RSselect.getLong(playerWorld);
+                    Long prevWildLand = 0L;
                     // get new value
                     Long newWildLand = prevWildLand + plotArea;
                     // set MySQL statement
+                    p.sendMessage(pUUID);
+                    p.sendMessage(String.valueOf(newWildLand));
+                    p.sendMessage(playerWorld);
                     MySQL.changePlayerWildLand(pUUID, newWildLand, playerWorld);
                     ResultSet RSWildLand = MySQL.getPlayerLand(pUUID);
                     // Send player new wild land values
@@ -93,6 +106,26 @@ public class PlotCreateListener implements Listener {
                     while(RSWildLand.next()) {
                         p.sendMessage(preMessage + "§A Added §6" + plotArea + "§A Tiles to " +  StringUtils.capitalize(playerWorldReplaced) + " land");
                         p.sendMessage(String.valueOf(preMessage + "§A New " + StringUtils.capitalize(playerWorldReplaced) + " Land Count: §6" + RSWildLand.getInt(playerWorld)));
+                    }
+                } else {
+                    while (RSselect.next()) {
+                        // get area of plot
+                        Long plotArea = newArea.getSize();
+                        // get Wild tile values
+                        Long prevWildLand = RSselect.getLong(playerWorld);
+                        // get new value
+                        Long newWildLand = prevWildLand + plotArea;
+                        // set MySQL statement
+                        MySQL.changePlayerWildLand(pUUID, newWildLand, playerWorld);
+                        ResultSet RSWildLand = MySQL.getPlayerLand(pUUID);
+                        // Send player new wild land values
+                        if (playerWorld != null) {
+                            playerWorldReplaced = playerWorld.replace("_count", "");
+                        }
+                        while (RSWildLand.next()) {
+                            p.sendMessage(preMessage + "§A Added §6" + plotArea + "§A Tiles to " + StringUtils.capitalize(playerWorldReplaced) + " land");
+                            p.sendMessage(String.valueOf(preMessage + "§A New " + StringUtils.capitalize(playerWorldReplaced) + " Land Count: §6" + RSWildLand.getInt(playerWorld)));
+                        }
                     }
                 }
             } else {

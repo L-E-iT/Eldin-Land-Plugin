@@ -1,0 +1,35 @@
+TutorialLawyer:
+    type: assignment
+    actions:
+        on assignment:
+        - chat "Lawyer, assuming the position."
+        - trigger name:click state:true
+    Interact Scripts:
+    - 10 TutorialLawyerInteract
+    
+TutorialLawyerInteract:
+    type: Interact
+    Steps:
+        '1':
+            click trigger:
+                Script:
+                - narrate format:cchat "Hello! I'm the Ranklord. It's like starlord but less cool. I can tell you more about the ranks system we use."
+                - zap step:2
+
+        '2':
+            click trigger:
+                Script:
+                - narrate format:cchat "<&f>[1/3] <&6>Whenever you purchase land, your tile count will go towards a rank, or 'title'. There are four different rank trees: wild, city, nether and end. Each tree requires you to own land in their respective location."
+                - zap step:3
+                
+        '3':
+            click trigger:
+                Script:
+                - narrate format:cchat "<&f>[2/3] <&6>As you rank up, you will gain access to new abilities - you will be able to place water, lava, create shops, use the /home command, even gain access to creating your own city!"
+                - zap step:4
+                
+        '4':
+            click trigger:
+                Script:
+                - narrate format:cchat "<&f>[3/3] <&6>Each rank tree offers unique and interesting abilities, and add a personal touch to your name in the chat."
+                - zap step:2

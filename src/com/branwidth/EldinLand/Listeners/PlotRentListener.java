@@ -5,6 +5,7 @@ import com.bekvon.bukkit.residence.event.ResidenceRentEvent;
 import com.branwidth.EldinLand.Main;
 import com.branwidth.EldinLand.MySQL;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -39,6 +40,7 @@ public class PlotRentListener implements Listener {
         Long plotSize = event.getResidence().getXZSize();
         Player townOwner = event.getResidence().getParent().getRPlayer().getPlayer();
         String townName = event.getResidence().getParent().getResidenceName();
+        double playerBalance = Main.econ.getBalance(p);
 
         ResultSet rsPlayerCityLand = MySQL.getPlayerLand(pUUID);
         if (rsPlayerCityLand == null) {
@@ -49,32 +51,32 @@ public class PlotRentListener implements Listener {
         }
 
 //        §A Green §6 Gold
-        if (rentType.equals(RENT)) {
-            // Change player city land count
-            MySQL.changePlayerCityLand(pUUID, plotSize, pName);
-            p.sendMessage(preMessage + "§A Added §6" + plotSize + "§A tiles to §6City§A land");
-            Long totalCityLand = playerCityLand + plotSize;
-            p.sendMessage(preMessage + "§A New City tile count: §6" + totalCityLand);
-            // Change town plot details
-            MySQL.changeCityPlot(townName, plotSize, pUUID, true);
-        } else if (rentType.equals(UNRENT) || rentType.equals(RENT_EXPIRE) || rentType.equals(UNRENTABLE)) {
-            // Change player city land count
-            if (!plotOwner.equals(p.getPlayer().getName())) {
-                MySQL.changePlayerCityLand(pUUID, -plotSize, pName);
-                MySQL.changeCityPlot(townName, plotSize, pUUID, false);
-                if (p.isOnline()) {
-                    p.sendMessage(preMessage + "§A Removed §6" + plotSize + "§A tiles from §6 City §A land");
-                    Long totalCityLand = playerCityLand - plotSize;
+            if (rentType.equals(RENT)) {
+                if (playerBalance < event.getResidence().getSellPrice()) {
+                    p.sendMessage(ChatColor.RED + "You do not have enough Trade Bars!");
+                } else {
+                    // Change player city land count
+                    MySQL.changePlayerCityLand(pUUID, plotSize, pName);
+                    p.sendMessage(preMessage + "§A Added §6" + plotSize + "§A tiles to §6City§A land");
+                    Long totalCityLand = playerCityLand + plotSize;
                     p.sendMessage(preMessage + "§A New City tile count: §6" + totalCityLand);
+                    // Change town plot details
+                    MySQL.changeCityPlot(townName, plotSize, pUUID, true);
                 }
-            } else {
+            } else if (rentType.equals(UNRENT) || rentType.equals(RENT_EXPIRE) || rentType.equals(UNRENTABLE)) {
+                // Change player city land count
+                if (!plotOwner.equals(p.getPlayer().getName())) {
+                    MySQL.changePlayerCityLand(pUUID, -plotSize, pName);
+                    MySQL.changeCityPlot(townName, plotSize, pUUID, false);
+                    if (p.isOnline()) {
+                        p.sendMessage(preMessage + "§A Removed §6" + plotSize + "§A tiles from §6 City §A land");
+                        Long totalCityLand = playerCityLand - plotSize;
+                        p.sendMessage(preMessage + "§A New City tile count: §6" + totalCityLand);
+                    }
+                } else {
+                }
+                // Change town plot details
             }
-
-            // Change town plot details
-        }
-
-        MySQL.disconnect();
-
 
     }
 }

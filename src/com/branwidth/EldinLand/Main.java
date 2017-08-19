@@ -1,18 +1,30 @@
 package com.branwidth.EldinLand;
 
 import com.branwidth.EldinLand.Listeners.*;
+import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
+import net.milkbowl.vault.economy.Economy;
+import org.bukkit.scheduler.BukkitScheduler;
+
 import java.io.File;
+import java.sql.SQLException;
 
 public class Main extends JavaPlugin {
+    public static Economy econ = null;
 
     @Override
     public void onEnable() {
         // Some text here for starting the plugin
         getLogger().info("Enabled EldinLand");
+        if (!setupEconomy() ) {
+            getLogger().severe(String.format("[%s] - Disabled due to no Vault dependency found!", getDescription().getName()));
+            getServer().getPluginManager().disablePlugin(this);
+            return;
+        }
         //Creating the config file for the plugin
         createFiles();
         MySQL.connect();
+        keepAlive();
         // Specifying commands for the plugin
         getCommand("Land").setExecutor(new Land());
         getCommand("Rank").setExecutor(new Rank());
@@ -26,6 +38,32 @@ public class Main extends JavaPlugin {
         // §A Green §6 Gold
     }
 
+    private void keepAlive() {
+        BukkitScheduler scheduler = getServer().getScheduler();
+        scheduler.scheduleSyncRepeatingTask(this, new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    MySQL.getConnection().prepareStatement("SELECT 1").executeQuery();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, 0l, 1200L);
+    }
+
+
+    private boolean setupEconomy() {
+        if (getServer().getPluginManager().getPlugin("Vault") == null) {
+            return false;
+        }
+        RegisteredServiceProvider<Economy> rsp = getServer().getServicesManager().getRegistration(Economy.class);
+        if (rsp == null) {
+            return false;
+        }
+        econ = rsp.getProvider();
+        return econ != null;
+    }
 
     private void createFiles() {
 

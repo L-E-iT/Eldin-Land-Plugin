@@ -35,11 +35,16 @@ public class PlotChangeSizeListener implements Listener {
         String preMessage = Main.getPlugin().getConfig().getString("MessagesConfig.PreMessage");
         Long oldArea = event.getOldArea().getSize();
         Long newArea = event.getNewArea().getSize() - oldArea;
+        double playerBalance = Main.econ.getBalance(p);
+
+        if (playerBalance < (event.getNewArea().getSize() - event.getOldArea().getSize())*30) {
+            p.sendMessage(ChatColor.RED + "You do not have enough Trade Bars!");
+            event.setCancelled(true);
+        }
 
         if (!Objects.equals(p.getName(), event.getResidence().getOwner())) {
 
         } else {
-
             // Get old land, set new land values
             ResultSet oldLandRS = MySQL.getPlayerLand(pUUID);
             while (oldLandRS.next()) {
@@ -59,6 +64,5 @@ public class PlotChangeSizeListener implements Listener {
             }
             //§A Green §6 Gold
         }
-        MySQL.disconnect();
     }
 }

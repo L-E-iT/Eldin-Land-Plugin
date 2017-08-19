@@ -5,6 +5,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
 import java.sql.*;
+import java.util.UUID;
 
 public class MySQL {
 
@@ -20,7 +21,7 @@ public class MySQL {
         String db = Main.getPlugin().getConfig().getString("MySQL.db");
 
 
-        String dbUrl = "jdbc:mysql://"+ location +":" + port + "/" + db + "?user=" + user + "&password=" + pass;
+        String dbUrl = "jdbc:mysql://"+ location +":" + port + "/" + db + "?autoReconnect=true&user=" + user + "&password=" + pass;
 
         if (!isConnected()){
             try {
@@ -77,9 +78,25 @@ public class MySQL {
     }
 
     public static void changePlayerWildLand(String pUUID, Long Count, String playerWorld) throws SQLException {
-        PreparedStatement ps = MySQL.getConnection().prepareStatement("UPDATE players SET " + playerWorld + " = " + Count +
-                " WHERE uuid = '" + pUUID + "'");
-        ps.executeUpdate();
+        StringBuilder newUUID = new StringBuilder(pUUID);
+        newUUID.insert(8,"-");
+        newUUID.insert(13,"-");
+        newUUID.insert(18, "-");
+        newUUID.insert(23,"-");
+        Main.getPlugin().getLogger().info(String.valueOf(newUUID));
+        String stringUUID = newUUID.toString();
+        UUID playerUUID = UUID.fromString(stringUUID);
+        String PlayerName = Bukkit.getPlayer(playerUUID).getName();
+        Bukkit.getPlayer(playerUUID).sendMessage(String.valueOf(playerUUID));
+        if (MySQL.getPlayerLand(pUUID) == null) {
+            PreparedStatement psInsert = MySQL.getConnection().prepareStatement("INSERT INTO players SET username = '" + PlayerName +
+                    "', uuid = '"  + pUUID + "', " +  playerWorld + " = " + Count);
+            psInsert.execute();
+        } else {
+            PreparedStatement psUpdate = MySQL.getConnection().prepareStatement("UPDATE players SET " + playerWorld + " = " + Count +
+                    " WHERE uuid = '" + pUUID + "'");
+            psUpdate.executeUpdate();
+        }
     }
 
     private static int getPlayerID(String pUUID) throws SQLException {
