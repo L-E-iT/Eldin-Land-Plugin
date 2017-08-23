@@ -95,7 +95,6 @@ public class PlotChangeOwnerListener implements Listener {
                 pNew.sendMessage(preMessage + "§A Added §6" + tileCount + "§A tiles to " + StringUtils.capitalize(playerWorldReplaced) + " land.");
                 pNew.sendMessage(preMessage + "§A New " + StringUtils.capitalize(playerWorldReplaced) + " Land Count: §6" + newPlayerNewLandCount);
             }
-            MySQL.disconnect();
         }
     }
 }

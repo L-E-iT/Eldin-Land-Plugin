@@ -46,14 +46,18 @@ public class Rank implements CommandExecutor {
             try {
                 String landType = args[0].toLowerCase();
                 ResultSet rsPlayerLand= MySQL.getPlayerLand(pUUID);
+                if (rsPlayerLand == null) {
+                    p.sendMessage("You don't own any land!");
+                    return true;
+                }
                 rsPlayerLand.next();
                 int wildLand = rsPlayerLand.getInt("wild_count");
                 int cityLand = rsPlayerLand.getInt("city_count");
                 int netherLand = rsPlayerLand.getInt("nether_count");
                 int endLand = rsPlayerLand.getInt("end_count");
 
-                if (wildLand <= 100 && cityLand <= 100 && netherLand <= 100 && endLand <= 100){
-                    p.sendMessage("You don't own even land!");
+                if (wildLand < 100 && cityLand < 100 && netherLand < 100 && endLand < 100){
+                    p.sendMessage("You don't own any land!");
                     return true;
                 }
                 switch (landType) {

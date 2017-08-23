@@ -36,13 +36,19 @@ public class PlotChangeSizeListener implements Listener {
         Long oldArea = event.getOldArea().getSize();
         Long newArea = event.getNewArea().getSize() - oldArea;
         double playerBalance = Main.econ.getBalance(p);
+        double playerOldBalance = Main.econ.getBalance(p) + (event.getNewArea().getSize() - event.getOldArea().getSize())*30;
+        p.sendMessage(String.valueOf(playerBalance));
+        p.sendMessage(String.valueOf(playerOldBalance));
 
-        if (playerBalance < (event.getNewArea().getSize() - event.getOldArea().getSize())*30) {
+        if (playerOldBalance < (event.getNewArea().getSize() - event.getOldArea().getSize())*30) {
             p.sendMessage(ChatColor.RED + "You do not have enough Trade Bars!");
+            p.sendMessage(ChatColor.RED + "Crediting the amount of TB taken back to your account!");
+            Main.econ.depositPlayer(p,(event.getNewArea().getSize() - event.getOldArea().getSize())*30);
+            event.getOldArea().save();
             event.setCancelled(true);
         }
 
-        if (!Objects.equals(p.getName(), event.getResidence().getOwner())) {
+        if (!Objects.equals(p.getName(), event.getResidence().getOwner()) || event.isCancelled()) {
 
         } else {
             // Get old land, set new land values

@@ -87,7 +87,6 @@ public class MySQL {
         String stringUUID = newUUID.toString();
         UUID playerUUID = UUID.fromString(stringUUID);
         String PlayerName = Bukkit.getPlayer(playerUUID).getName();
-        Bukkit.getPlayer(playerUUID).sendMessage(String.valueOf(playerUUID));
         if (MySQL.getPlayerLand(pUUID) == null) {
             PreparedStatement psInsert = MySQL.getConnection().prepareStatement("INSERT INTO players SET username = '" + PlayerName +
                     "', uuid = '"  + pUUID + "', " +  playerWorld + " = " + Count);
