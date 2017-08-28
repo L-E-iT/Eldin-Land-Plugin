@@ -7,18 +7,18 @@ import org.bukkit.entity.Player;
 import java.sql.*;
 import java.util.UUID;
 
-public class MySQL {
+public class Database {
 
     private static Connection conn;
 
     //Connecting
     public static void connect() {
 
-        String user = Main.getPlugin().getConfig().getString("MySQL.user");
-        String pass = Main.getPlugin().getConfig().getString("MySQL.password");
-        String port = Main.getPlugin().getConfig().getString("MySQL.port");
-        String location = Main.getPlugin().getConfig().getString("MySQL.location");
-        String db = Main.getPlugin().getConfig().getString("MySQL.db");
+        String user = Main.getPlugin().getConfig().getString("Database.user");
+        String pass = Main.getPlugin().getConfig().getString("Database.password");
+        String port = Main.getPlugin().getConfig().getString("Database.port");
+        String location = Main.getPlugin().getConfig().getString("Database.location");
+        String db = Main.getPlugin().getConfig().getString("Database.db");
 
 
         String dbUrl = "jdbc:mysql://"+ location +":" + port + "/" + db + "?autoReconnect=true&user=" + user + "&password=" + pass;
@@ -55,7 +55,7 @@ public class MySQL {
 
     public static ResultSet getPlayerLand(String uuid) throws SQLException {
         // get result set of a players land
-        PreparedStatement PSland = MySQL.getConnection().prepareStatement("select * from players WHERE uuid='" + uuid + "'");
+        PreparedStatement PSland = Database.getConnection().prepareStatement("select * from players WHERE uuid='" + uuid + "'");
         ResultSet RSland = PSland.executeQuery();
         if (RSland.isBeforeFirst()) {
             return RSland;
@@ -87,12 +87,12 @@ public class MySQL {
         String stringUUID = newUUID.toString();
         UUID playerUUID = UUID.fromString(stringUUID);
         String PlayerName = Bukkit.getPlayer(playerUUID).getName();
-        if (MySQL.getPlayerLand(pUUID) == null) {
-            PreparedStatement psInsert = MySQL.getConnection().prepareStatement("INSERT INTO players SET username = '" + PlayerName +
+        if (Database.getPlayerLand(pUUID) == null) {
+            PreparedStatement psInsert = Database.getConnection().prepareStatement("INSERT INTO players SET username = '" + PlayerName +
                     "', uuid = '"  + pUUID + "', " +  playerWorld + " = " + Count);
             psInsert.execute();
         } else {
-            PreparedStatement psUpdate = MySQL.getConnection().prepareStatement("UPDATE players SET " + playerWorld + " = " + Count +
+            PreparedStatement psUpdate = Database.getConnection().prepareStatement("UPDATE players SET " + playerWorld + " = " + Count +
                     " WHERE uuid = '" + pUUID + "'");
             psUpdate.executeUpdate();
         }
@@ -100,7 +100,7 @@ public class MySQL {
 
     private static int getPlayerID(String pUUID) throws SQLException {
         try {
-            PreparedStatement PSplayer = MySQL.getConnection().prepareStatement("select * from players WHERE uuid='" + pUUID + "'");
+            PreparedStatement PSplayer = Database.getConnection().prepareStatement("select * from players WHERE uuid='" + pUUID + "'");
             ResultSet RSplayer = PSplayer.executeQuery();
             RSplayer.next();
             return RSplayer.getInt("id");
@@ -112,12 +112,12 @@ public class MySQL {
     public static void changePlayerCityLand(String pUUID, Long tileCount, String playerName) throws SQLException {
 
         if (getPlayerID(pUUID) == 0) {
-            PreparedStatement ps = MySQL.getConnection().prepareStatement("INSERT INTO players SET username = '" + playerName +
+            PreparedStatement ps = Database.getConnection().prepareStatement("INSERT INTO players SET username = '" + playerName +
                     "', uuid = '"  + pUUID + "', city_count = " + tileCount);
             ps.execute();
         } else {
             Main.getPlugin().getLogger().info("changePlayerCityLand else called!");
-            PreparedStatement ps = MySQL.getConnection().prepareStatement("UPDATE players SET city_count = city_count + " + tileCount +
+            PreparedStatement ps = Database.getConnection().prepareStatement("UPDATE players SET city_count = city_count + " + tileCount +
                     " WHERE uuid = '" + pUUID + "'");
             ps.execute();
         }
@@ -128,13 +128,13 @@ public class MySQL {
         Boolean ownsLand = false;
 
         // Get city ID from cities table
-        PreparedStatement psID = MySQL.getConnection().prepareStatement("SELECT id FROM cities WHERE city_name = '" + townName + "'");
+        PreparedStatement psID = Database.getConnection().prepareStatement("SELECT id FROM cities WHERE city_name = '" + townName + "'");
         ResultSet rsID = psID.executeQuery();
         rsID.next();
         int cityID = rsID.getInt("id");
 
         // Will get if a player owns land in a city
-        PreparedStatement psOwnLand = MySQL.getConnection().prepareStatement("SELECT COUNT(*) as count FROM city_plots WHERE city_id = " + cityID + " AND player_id = " + playerID);
+        PreparedStatement psOwnLand = Database.getConnection().prepareStatement("SELECT COUNT(*) as count FROM city_plots WHERE city_id = " + cityID + " AND player_id = " + playerID);
         ResultSet rsOwnLand = psOwnLand.executeQuery();
         rsOwnLand.next();
         if (rsOwnLand.getInt("count") > 0) {
@@ -146,37 +146,37 @@ public class MySQL {
         if (ownsLand) {
             // Check if we are adding land
             if (addLand) {
-                PreparedStatement psOwnAdd = MySQL.getConnection().prepareStatement(
+                PreparedStatement psOwnAdd = Database.getConnection().prepareStatement(
                         "UPDATE city_plots SET plot_tiles = plot_tiles +" + tileCount + " WHERE (player_id = " + playerID + ") AND (city_id = " + cityID + ")");
                 psOwnAdd.execute();
                 // Check if we are removing land
             } else {
-                PreparedStatement psOwnRemove = MySQL.getConnection().prepareStatement(
+                PreparedStatement psOwnRemove = Database.getConnection().prepareStatement(
                         "UPDATE city_plots SET plot_tiles = plot_tiles -" + tileCount + " WHERE " + " (player_id = " + playerID + " AND city_id = " + cityID + ")");
                 Main.getPlugin().getLogger().info("Removing Land");
                 psOwnRemove.execute();
                 if (playerCityPlotAmount(playerID,cityID)==0) {
-                    PreparedStatement psRemovePlot = MySQL.getConnection().prepareStatement("DELETE FROM city_plots WHERE (city_id = " + cityID + ") AND (player_id =" + playerID +" )");
+                    PreparedStatement psRemovePlot = Database.getConnection().prepareStatement("DELETE FROM city_plots WHERE (city_id = " + cityID + ") AND (player_id =" + playerID +" )");
                     psRemovePlot.execute();
                 }
             }
             // If player doesn't own land in that city yet
         } else {
             if (addLand) {
-                PreparedStatement psNoOwnAdd = MySQL.getConnection().prepareStatement(
+                PreparedStatement psNoOwnAdd = Database.getConnection().prepareStatement(
                         "INSERT INTO city_plots SET plot_tiles = " + tileCount + ", player_id = '" + playerID + "', city_id = " + cityID);
                 psNoOwnAdd.execute();
             } else {
                 // God I hope this never executes...
                 Player p = Bukkit.getPlayer(pUUID);
-                p.sendMessage(ChatColor.RED + "Something went wrong... Submit a ticket about MySQL Class Errors and City Land with the Eldin Land Plugin");
+                p.sendMessage(ChatColor.RED + "Something went wrong... Submit a ticket about Database Class Errors and City Land with the Eldin Land Plugin");
             }
         }
     }
 
     public static void changeCitySize(String pUUID, Long Count, String playerWorld, String townName) throws SQLException {
-        // Set MySQL statement for adding city land to a town (Town expansion)
-        PreparedStatement psChangeCitySize = MySQL.getConnection().prepareStatement(
+        // Set Database statement for adding city land to a town (Town expansion)
+        PreparedStatement psChangeCitySize = Database.getConnection().prepareStatement(
                 "UPDATE cities SET total_tiles = total_tiles + " + Count + " WHERE town_name = '" + townName + "'");
         psChangeCitySize.execute();
     }
@@ -184,7 +184,7 @@ public class MySQL {
     // Check to see if a plot is registered as a city
     public static Boolean isCity(String townName) throws SQLException {
         // Statement for if a plot is a city
-        PreparedStatement psCityNames = MySQL.getConnection().prepareStatement(
+        PreparedStatement psCityNames = Database.getConnection().prepareStatement(
                 "SELECT city_name FROM cities");
         ResultSet rsCityNames = psCityNames.executeQuery();
         // for each row in the cities table
@@ -200,7 +200,7 @@ public class MySQL {
 
     public static int playerCityPlotAmount(int playerID, int cityID) throws SQLException {
         try {
-            PreparedStatement PScityPlotAmount = MySQL.getConnection().prepareStatement("SELECT * FROM city_plots");
+            PreparedStatement PScityPlotAmount = Database.getConnection().prepareStatement("SELECT * FROM city_plots");
             ResultSet RScityPlotAmount = PScityPlotAmount.executeQuery();
             while (RScityPlotAmount.next()) {
                 if (RScityPlotAmount.getInt("city_id") == cityID && RScityPlotAmount.getInt("player_id") == playerID) {
@@ -208,10 +208,10 @@ public class MySQL {
                 }
             }
         } catch (Exception e) {
-            Main.getPlugin().getLogger().info("MySQL Failed to get city ID");
+            Main.getPlugin().getLogger().info("Database Failed to get city ID");
             return 1;
         }
-        Main.getPlugin().getLogger().info("playerCityPlotAmount did not work in MySQL.java");
+        Main.getPlugin().getLogger().info("playerCityPlotAmount did not work in Database.java");
         return 1;
 
     }
@@ -219,7 +219,7 @@ public class MySQL {
     public static int getCityID(String townName) {
         // May not be needed.
         try {
-            PreparedStatement PScity = MySQL.getConnection().prepareStatement("SELECT id FROM cities WHERE city_name = '" + townName + "'");
+            PreparedStatement PScity = Database.getConnection().prepareStatement("SELECT id FROM cities WHERE city_name = '" + townName + "'");
             ResultSet RScity = PScity.executeQuery();
             RScity.next();
             return RScity.getInt("id");

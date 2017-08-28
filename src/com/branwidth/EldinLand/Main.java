@@ -23,7 +23,7 @@ public class Main extends JavaPlugin {
         }
         //Creating the config file for the plugin
         createFiles();
-        MySQL.connect();
+        Database.connect();
         keepAlive();
         // Specifying commands for the plugin
         getCommand("Land").setExecutor(new Land());
@@ -44,7 +44,7 @@ public class Main extends JavaPlugin {
             @Override
             public void run() {
                 try {
-                    MySQL.getConnection().prepareStatement("SELECT 1").executeQuery();
+                    Database.getConnection().prepareStatement("SELECT 1").executeQuery();
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
@@ -84,7 +84,7 @@ public class Main extends JavaPlugin {
     public void onDisable(){
         // Some text here for stopping the plugin
         getLogger().info("Disabled EldinLand");
-        MySQL.disconnect();
+        Database.disconnect();
     }
 
 

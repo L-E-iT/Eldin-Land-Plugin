@@ -19,10 +19,10 @@ public class Rank implements CommandExecutor {
 
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
-        // Ensure that the MySQL database connection is established
-        MySQL.connect();
-        if (!MySQL.isConnected()) {
-            MySQL.connect();
+        // Ensure that the Database database connection is established
+        Database.connect();
+        if (!Database.isConnected()) {
+            Database.connect();
         }
 
 
@@ -45,7 +45,7 @@ public class Rank implements CommandExecutor {
         } else if (args.length == 1) {
             try {
                 String landType = args[0].toLowerCase();
-                ResultSet rsPlayerLand= MySQL.getPlayerLand(pUUID);
+                ResultSet rsPlayerLand= Database.getPlayerLand(pUUID);
                 if (rsPlayerLand == null) {
                     p.sendMessage("You don't own any land!");
                     return true;
@@ -267,6 +267,6 @@ public class Rank implements CommandExecutor {
         } else {
             p.sendMessage(preMessage + "§A You do not have enough city land!");
         }
-        MySQL.disconnect();
+        Database.disconnect();
     }
 }
