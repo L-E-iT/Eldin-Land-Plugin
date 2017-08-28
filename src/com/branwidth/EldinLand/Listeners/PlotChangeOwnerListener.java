@@ -2,8 +2,8 @@ package com.branwidth.EldinLand.Listeners;
 
 import com.bekvon.bukkit.residence.Residence;
 import com.bekvon.bukkit.residence.event.ResidenceOwnerChangeEvent;
+import com.branwidth.EldinLand.Database;
 import com.branwidth.EldinLand.Main;
-import com.branwidth.EldinLand.MySQL;
 import org.apache.commons.lang.StringUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -20,10 +20,10 @@ public class PlotChangeOwnerListener implements Listener {
     @EventHandler
     public void onChangeOwnerEvent(ResidenceOwnerChangeEvent event) throws SQLException {
 
-        // Ensure that the MySQL database connection is established
-        MySQL.connect();
-        if (!MySQL.isConnected()) {
-            MySQL.connect();
+        // Ensure that the Database database connection is established
+        Database.connect();
+        if (!Database.isConnected()) {
+            Database.connect();
         }
 
 
@@ -40,7 +40,7 @@ public class PlotChangeOwnerListener implements Listener {
         double playerBalance = Main.econ.getBalance(pNew);
 
 
-        String playerWorld = MySQL.getPlayerWorld(event.getResidence().getWorld());
+        String playerWorld = Database.getPlayerWorld(event.getResidence().getWorld());
         String playerWorldReplaced = playerWorld.replace("_count", "");
 
         String preMessage = Main.getPlugin().getConfig().getString("MessagesConfig.PreMessage");
@@ -55,30 +55,30 @@ public class PlotChangeOwnerListener implements Listener {
                 if (pNewName.equals(townOwner)) {
                     // land sold back to town
                     // take land from old owner
-                    MySQL.changePlayerCityLand(pOldUUID, -tileCount, pOldName);
+                    Database.changePlayerCityLand(pOldUUID, -tileCount, pOldName);
                     // do not give any to the new owner
                 } else {
                     // land sold to another player
                     // remove land from current owner
-                    MySQL.changePlayerCityLand(pOldUUID, -tileCount, pOldName);
+                    Database.changePlayerCityLand(pOldUUID, -tileCount, pOldName);
                     // give land to new owner
-                    MySQL.changePlayerCityLand(pNewUUID, tileCount, pNewName);
+                    Database.changePlayerCityLand(pNewUUID, tileCount, pNewName);
                     // remove land from city listing from old player
-                    MySQL.changeCityPlot(townName, tileCount, pOldUUID, false);
+                    Database.changeCityPlot(townName, tileCount, pOldUUID, false);
                     // add land to city listing for new player
-                    MySQL.changeCityPlot(townName, tileCount, pNewUUID, true);
+                    Database.changeCityPlot(townName, tileCount, pNewUUID, true);
                 }
             } else {
                 // Transferred wild land
                 // get new player total wild land count
-                String worldNameFrm = MySQL.getPlayerWorld(worldName);
-                ResultSet rsNewPlayerLand = MySQL.getPlayerLand(pNewUUID);
+                String worldNameFrm = Database.getPlayerWorld(worldName);
+                ResultSet rsNewPlayerLand = Database.getPlayerLand(pNewUUID);
                 rsNewPlayerLand.next();
                 Long newPlayerOldLandCount = rsNewPlayerLand.getLong(worldNameFrm);
 
                 // get old player total wild land count
-                MySQL.getPlayerLand(pOldUUID);
-                ResultSet rsOldPlayerLand = MySQL.getPlayerLand(pOldUUID);
+                Database.getPlayerLand(pOldUUID);
+                ResultSet rsOldPlayerLand = Database.getPlayerLand(pOldUUID);
                 rsOldPlayerLand.next();
                 Long oldPlayerOldLandCount = rsNewPlayerLand.getLong(worldNameFrm);
 
@@ -87,11 +87,11 @@ public class PlotChangeOwnerListener implements Listener {
                 long oldPlayerNewLandCount = oldPlayerOldLandCount - tileCount;
 
                 // remove wild land from old player
-                MySQL.changePlayerWildLand(pOldUUID, oldPlayerNewLandCount, worldNameFrm);
+                Database.changePlayerWildLand(pOldUUID, oldPlayerNewLandCount, worldNameFrm);
                 pOld.sendMessage(preMessage + "§A Removed §6" + tileCount + "§A tiles from " + StringUtils.capitalize(playerWorldReplaced) + " land.");
                 pOld.sendMessage(preMessage + "§A New " + StringUtils.capitalize(playerWorldReplaced) + " Land Count: §6" + oldPlayerNewLandCount);
                 // add wild land to new player
-                MySQL.changePlayerWildLand(pNewUUID, newPlayerNewLandCount, worldNameFrm);
+                Database.changePlayerWildLand(pNewUUID, newPlayerNewLandCount, worldNameFrm);
                 pNew.sendMessage(preMessage + "§A Added §6" + tileCount + "§A tiles to " + StringUtils.capitalize(playerWorldReplaced) + " land.");
                 pNew.sendMessage(preMessage + "§A New " + StringUtils.capitalize(playerWorldReplaced) + " Land Count: §6" + newPlayerNewLandCount);
             }
