@@ -45,28 +45,29 @@ public class PlotChangeOwnerListener implements Listener {
 
         String preMessage = Main.getPlugin().getConfig().getString("MessagesConfig.PreMessage");
 
-        if (playerBalance < event.getResidence().getSellPrice()) {
-            pNew.sendMessage(ChatColor.RED + "You do not have enough Trade Bars!");
-        } else {
             if (event.getResidence().isSubzone()) {
                 // Bought or sold city land
                 String townName = event.getResidence().getParent().getResidenceName();
                 String townOwner = event.getResidence().getParent().getRPlayer().getPlayerName();
-                if (pNewName.equals(townOwner)) {
-                    // land sold back to town
-                    // take land from old owner
-                    Database.changePlayerCityLand(pOldUUID, -tileCount, pOldName);
-                    // do not give any to the new owner
+                if (playerBalance < event.getResidence().getSellPrice()) {
+                    pNew.sendMessage(ChatColor.RED + "You do not have enough Trade Bars!");
                 } else {
-                    // land sold to another player
-                    // remove land from current owner
-                    Database.changePlayerCityLand(pOldUUID, -tileCount, pOldName);
-                    // give land to new owner
-                    Database.changePlayerCityLand(pNewUUID, tileCount, pNewName);
-                    // remove land from city listing from old player
-                    Database.changeCityPlot(townName, tileCount, pOldUUID, false);
-                    // add land to city listing for new player
-                    Database.changeCityPlot(townName, tileCount, pNewUUID, true);
+                    if (pNewName.equals(townOwner)) {
+                        // land sold back to town
+                        // take land from old owner
+                        Database.changePlayerCityLand(pOldUUID, -tileCount, pOldName);
+                        // do not give any to the new owner
+                    } else {
+                        // land sold to another player
+                        // remove land from current owner
+                        Database.changePlayerCityLand(pOldUUID, -tileCount, pOldName);
+                        // give land to new owner
+                        Database.changePlayerCityLand(pNewUUID, tileCount, pNewName);
+                        // remove land from city listing from old player
+                        Database.changeCityPlot(townName, tileCount, pOldUUID, false);
+                        // add land to city listing for new player
+                        Database.changeCityPlot(townName, tileCount, pNewUUID, true);
+                    }
                 }
             } else {
                 // Transferred wild land
