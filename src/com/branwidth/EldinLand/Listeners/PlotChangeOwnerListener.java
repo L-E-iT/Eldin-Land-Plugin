@@ -98,4 +98,3 @@ public class PlotChangeOwnerListener implements Listener {
             }
         }
     }
-}
