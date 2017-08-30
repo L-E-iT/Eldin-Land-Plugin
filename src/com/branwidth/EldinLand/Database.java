@@ -14,14 +14,13 @@ public class Database {
     //Connecting
     public static void connect() {
 
-        String user = Main.getPlugin().getConfig().getString("Database.user");
-        String pass = Main.getPlugin().getConfig().getString("Database.password");
-        String port = Main.getPlugin().getConfig().getString("Database.port");
-        String location = Main.getPlugin().getConfig().getString("Database.location");
-        String db = Main.getPlugin().getConfig().getString("Database.db");
+        String user = Main.getPlugin().getConfig().getString("MySQL.user");
+        String pass = Main.getPlugin().getConfig().getString("MySQL.password");
+        String port = Main.getPlugin().getConfig().getString("MySQL.port");
+        String location = Main.getPlugin().getConfig().getString("MySQL.location");
+        String db = Main.getPlugin().getConfig().getString("MySQL.db");
 
-
-        String dbUrl = "jdbc:mysql://"+ location +":" + port + "/" + db + "?autoReconnect=true&user=" + user + "&password=" + pass;
+        String dbUrl = "jdbc:mysql://" + location + ":" + port + "/" + db + "?user=" + user + "&password=" + pass;
 
         if (!isConnected()){
             try {
@@ -95,22 +94,38 @@ public class Database {
 
         if (Database.getPlayerLand(pUUID) == null) {
 
+            PreparedStatement psInsert = null;
             // set player world equal to count
-            PreparedStatement psInsert = Database.getConnection().prepareStatement("INSERT INTO players SET username = ?, uuid = ?, ? = ? ");
+            if (playerWorld.equals("wild_count")) {
+                psInsert = Database.getConnection().prepareStatement("INSERT INTO players SET username = ?, uuid = ?, wild_count = ? ");
+            } else  if (playerWorld.equals("city_count")) {
+                psInsert = Database.getConnection().prepareStatement("INSERT INTO players SET username = ?, uuid = ?, city_count = ? ");
+            } else  if (playerWorld.equals("nether_count")) {
+                psInsert = Database.getConnection().prepareStatement("INSERT INTO players SET username = ?, uuid = ?, nether_count = ? ");
+            } else  if (playerWorld.equals("end_count")) {
+                psInsert = Database.getConnection().prepareStatement("INSERT INTO players SET username = ?, uuid = ?, end_count = ? ");
+            }
 
             psInsert.setString(1, PlayerName);
             psInsert.setString(2, pUUID);
-            psInsert.setString(3, playerWorld);
-            psInsert.setLong(4, Count);
+            psInsert.setLong(3, Count);
 
             psInsert.execute();
         } else {
-            // set player world equal to count
-            PreparedStatement psUpdate = Database.getConnection().prepareStatement("UPDATE players SET ? = ? WHERE uuid = ?");
+            PreparedStatement psUpdate = null;
 
-            psUpdate.setString(1, playerWorld);
-            psUpdate.setLong(2, Count);
-            psUpdate.setString(3, pUUID);
+            if (playerWorld.equals("wild_count")) {
+                psUpdate = Database.getConnection().prepareStatement("UPDATE players SET wild_count = ? WHERE uuid = ?");
+            } else  if (playerWorld.equals("city_count")) {
+                psUpdate = Database.getConnection().prepareStatement("UPDATE players SET city_count = ? WHERE uuid = ?");
+            } else  if (playerWorld.equals("nether_count")) {
+                psUpdate = Database.getConnection().prepareStatement("UPDATE players SET nether_count = ? WHERE uuid = ?");
+            } else  if (playerWorld.equals("end_count")) {
+                psUpdate = Database.getConnection().prepareStatement("UPDATE players SET end_count = ? WHERE uuid = ?");
+            }
+            // set player world equal to count
+            psUpdate.setLong(1, Count);
+            psUpdate.setString(2, pUUID);
 
             psUpdate.executeUpdate();
         }
