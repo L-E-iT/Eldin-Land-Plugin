@@ -17,17 +17,15 @@ public class Land implements CommandExecutor {
             Database.connect();
         }
 
-
         Player p = (Player) sender;
-        String pName = p.getUniqueId().toString().replace("-","");
+        String pUUID = p.getUniqueId().toString().replace("-","");
 
         String wildLand,cityLand,netherLand,endLand,totalLand;
 
         if (Database.isConnected()) {
             try {
                 // Prepare SQL statement
-                PreparedStatement ps = Database.getConnection().prepareStatement("select * from players WHERE uuid='" + pName + "'");
-                ResultSet rs = ps.executeQuery();
+                ResultSet rs = Database.getPlayerLand(pUUID);
                 while (rs.next()) {
                     // Send land information to user
                     wildLand = Integer.toString(rs.getInt("wild_count"));

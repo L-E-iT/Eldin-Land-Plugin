@@ -32,9 +32,11 @@ public class PlotChangeOwnerListener implements Listener {
         String pNewUUID = pNew.getUniqueId().toString().replace("-", "");
         String worldName = event.getResidence().getWorld();
 
+
         String pOldName = event.getResidence().getOwner();
+        Main.getPlugin().getLogger().info(pOldName);
         Player pOld = Bukkit.getPlayer(pOldName);
-        String pOldUUID = pNew.getUniqueId().toString().replace("-", "");
+        String pOldUUID = pOld.getUniqueId().toString().replace("-", "");
 
         Long tileCount = event.getResidence().getXZSize();
         double playerBalance = Main.econ.getBalance(pNew);
@@ -81,7 +83,7 @@ public class PlotChangeOwnerListener implements Listener {
                 Database.getPlayerLand(pOldUUID);
                 ResultSet rsOldPlayerLand = Database.getPlayerLand(pOldUUID);
                 rsOldPlayerLand.next();
-                Long oldPlayerOldLandCount = rsNewPlayerLand.getLong(worldNameFrm);
+                Long oldPlayerOldLandCount = rsOldPlayerLand.getLong(worldNameFrm);
 
                 // set new land counts for each old and new player
                 long newPlayerNewLandCount = newPlayerOldLandCount + tileCount;
@@ -98,4 +100,3 @@ public class PlotChangeOwnerListener implements Listener {
             }
         }
     }
-}
