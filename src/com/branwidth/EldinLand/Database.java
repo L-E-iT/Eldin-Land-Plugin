@@ -168,17 +168,28 @@ public class Database {
         }
     }
 
-    public static void changeCityPlot(String townName, Long tileCount, String pUUID, Boolean addLand) throws SQLException {
+    public static void changeCityPlot(String plotName, Long tileCount, String pUUID, Boolean addLand) throws SQLException {
         int playerID = getPlayerID(pUUID);
         Boolean ownsLand = false;
+        int cityID = 0;
 
-        // Get city ID from cities table
-        PreparedStatement psID = Database.getConnection().prepareStatement("SELECT id FROM cities WHERE city_name = ?");
-        psID.setString(1,townName);
+        // Get city ID from cities composition table
+        PreparedStatement psCheckPlots = Database.getConnection().prepareStatement("SELECT id FROM city_composition_lookup WHERE residence_name = ?");
+        psCheckPlots.setString(1, plotName);
 
-        ResultSet rsID = psID.executeQuery();
-        rsID.next();
-        int cityID = rsID.getInt("id");
+        ResultSet rsCheckPlots = psCheckPlots.executeQuery();
+        if (rsCheckPlots != null) {
+            rsCheckPlots.next();
+            cityID = rsCheckPlots.getInt("id");
+        } else {
+            // Get city ID from cities table
+            PreparedStatement psID = Database.getConnection().prepareStatement("SELECT id FROM cities WHERE city_name = ?");
+            psID.setString(1,plotName);
+
+            ResultSet rsID = psID.executeQuery();
+            rsID.next();
+            cityID = rsID.getInt("id");
+        }
 
         // Will get if a player owns land in a city
         PreparedStatement psOwnLand = Database.getConnection().prepareStatement("SELECT COUNT(*) as count FROM city_plots WHERE city_id = ? AND player_id =?");
@@ -209,7 +220,6 @@ public class Database {
             } else {
                 PreparedStatement psOwnRemove = Database.getConnection().prepareStatement(
                         "UPDATE city_plots SET plot_tiles = plot_tiles - ? WHERE (player_id = ?) AND (city_id = ?) ");
-
                 Main.getPlugin().getLogger().info("Removing Land");
                 psOwnRemove.execute();
                 if (playerCityPlotAmount(playerID,cityID)==0) {
@@ -241,26 +251,28 @@ public class Database {
         }
     }
 
-    public static void changeCitySize(String pUUID, Long Count, String playerWorld, String townName) throws SQLException {
+    public static void changeCitySize(String pUUID, Long Count, String playerWorld, String plotName) throws SQLException {
         // Set Database statement for adding city land to a town (Town expansion)
+        int cityID = getCityID(plotName);
         PreparedStatement psChangeCitySize = Database.getConnection().prepareStatement(
-                "UPDATE cities SET total_tiles = total_tiles + ? WHERE town_name = ?");
+                "UPDATE cities SET total_tiles = total_tiles + ? WHERE id = ?");
         psChangeCitySize.setLong(1, Count);
-        psChangeCitySize.setString(2, townName);
+        psChangeCitySize.setInt(2, cityID);
 
         psChangeCitySize.execute();
     }
 
     // Check to see if a plot is registered as a city
-    public static Boolean isCity(String townName) throws SQLException {
+    public static Boolean isCity(String plotName) throws SQLException {
+        int cityID = getCityID(plotName);
         // Statement for if a plot is a city
         PreparedStatement psCityNames = Database.getConnection().prepareStatement(
-                "SELECT city_name FROM cities");
+                "SELECT id FROM cities");
         ResultSet rsCityNames = psCityNames.executeQuery();
         // for each row in the cities table
         while (rsCityNames.next()) {
             // Get city name and check to current plot name
-            if (rsCityNames.getString("city_name").equals(townName)) {
+            if (rsCityNames.getString("id").equals(cityID)) {
                 // return true if it exists
                 return true;
             }
@@ -286,14 +298,16 @@ public class Database {
 
     }
 
-    public static int getCityID(String townName) {
+    public static int getCityID(String plotName) {
         // May not be needed.
         try {
-            PreparedStatement PScity = Database.getConnection().prepareStatement("SELECT id FROM cities WHERE city_name = ?");
-            PScity.setString(1, townName);
-            ResultSet RScity = PScity.executeQuery();
-            RScity.next();
-            return RScity.getInt("id");
+            // Get city ID from cities composition table
+            PreparedStatement psCheckPlots = Database.getConnection().prepareStatement("SELECT id FROM city_composition_lookup WHERE residence_name = ?");
+            psCheckPlots.setString(1, plotName);
+
+            ResultSet rsCheckPlots = psCheckPlots.executeQuery();
+            rsCheckPlots.next();
+            return rsCheckPlots.getInt("id");
         } catch (Exception e) {
             return 0;
         }
