@@ -80,7 +80,7 @@ public class Database {
         }
     }
 
-    public static void changePlayerWildLand(String pUUID, Long Count, String playerWorld) throws SQLException {
+    public static void setPlayerWildLand(String pUUID, Long Count, String playerWorld) throws SQLException {
         StringBuilder newUUID = new StringBuilder(pUUID);
         newUUID.insert(8,"-");
         newUUID.insert(13,"-");
@@ -146,7 +146,7 @@ public class Database {
         }
     }
 
-    public static void changePlayerCityLand(String pUUID, Long tileCount, String playerName) throws SQLException {
+    public static void setPlayerCityLand(String pUUID, Long tileCount, String playerName) throws SQLException {
 
         if (getPlayerID(pUUID) == 0) {
 
@@ -222,7 +222,7 @@ public class Database {
                         "UPDATE city_plots SET plot_tiles = plot_tiles - ? WHERE (player_id = ?) AND (city_id = ?) ");
                 Main.getPlugin().getLogger().info("Removing Land");
                 psOwnRemove.execute();
-                if (playerCityPlotAmount(playerID,cityID)==0) {
+                if (getPlayerCityPlotAmount(playerID,cityID)==0) {
                     PreparedStatement psRemovePlot = Database.getConnection().prepareStatement("DELETE FROM city_plots WHERE (city_id = ?) AND (player_id =?)");
                     psRemovePlot.setInt(1, cityID);
                     psRemovePlot.setInt(2, playerID);
@@ -263,7 +263,7 @@ public class Database {
     }
 
     // Check to see if a plot is registered as a city
-    public static Boolean isCity(String plotName) throws SQLException {
+    public static Boolean getIsCity(String plotName) throws SQLException {
         int cityID = getCityID(plotName);
         // Statement for if a plot is a city
         PreparedStatement psCityNames = Database.getConnection().prepareStatement(
@@ -280,7 +280,7 @@ public class Database {
         return false;
     }
 
-    public static int playerCityPlotAmount(int playerID, int cityID) throws SQLException {
+    public static int getPlayerCityPlotAmount(int playerID, int cityID) throws SQLException {
         try {
             PreparedStatement PScityPlotAmount = Database.getConnection().prepareStatement("SELECT * FROM city_plots");
             ResultSet RScityPlotAmount = PScityPlotAmount.executeQuery();
@@ -293,7 +293,7 @@ public class Database {
             Main.getPlugin().getLogger().info("Database Failed to get city ID");
             return 1;
         }
-        Main.getPlugin().getLogger().info("playerCityPlotAmount did not work in Database.java");
+        Main.getPlugin().getLogger().info("getPlayerCityPlotAmount did not work in Database.java");
         return 1;
 
     }

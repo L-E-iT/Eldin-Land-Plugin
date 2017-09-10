@@ -94,7 +94,7 @@ public class PlotCreateListener implements Listener {
                     p.sendMessage(pUUID);
                     p.sendMessage(String.valueOf(newWildLand));
                     p.sendMessage(playerWorld);
-                    Database.changePlayerWildLand(pUUID, newWildLand, playerWorld);
+                    Database.setPlayerWildLand(pUUID, newWildLand, playerWorld);
                     ResultSet RSWildLand = Database.getPlayerLand(pUUID);
                     // Send player new wild land values
                     if (playerWorld != null) {
@@ -113,7 +113,7 @@ public class PlotCreateListener implements Listener {
                         // get new value
                         Long newWildLand = prevWildLand + plotArea;
                         // set Database statement
-                        Database.changePlayerWildLand(pUUID, newWildLand, playerWorld);
+                        Database.setPlayerWildLand(pUUID, newWildLand, playerWorld);
                         ResultSet RSWildLand = Database.getPlayerLand(pUUID);
                         // Send player new wild land values
                         if (playerWorld != null) {

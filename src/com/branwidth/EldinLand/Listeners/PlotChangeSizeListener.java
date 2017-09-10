@@ -54,13 +54,13 @@ public class PlotChangeSizeListener implements Listener {
             while (oldLandRS.next()) {
                 Long oldLand = oldLandRS.getLong(playerWorld);
                 Long newLand = oldLand + newArea;
-                Database.changePlayerWildLand(pUUID, newLand, playerWorld);
+                Database.setPlayerWildLand(pUUID, newLand, playerWorld);
 
                 // Send message to player about new land values
                 p.sendMessage(preMessage + "§A Your old§6 " + playerWorldReplaced + " §Aland count was: §6" + oldLand + " §ATiles.");
                 p.sendMessage(preMessage + "§A Your new§6 " + playerWorldReplaced + " §Aland count is: §6" + newLand + " §ATiles.");
             }
-            if (Database.isCity(event.getResidenceName())) {
+            if (Database.getIsCity(event.getResidenceName())) {
                 Database.changeCitySize(pUUID,newArea,playerWorld, event.getResidenceName());
                 Long totalSize = Residence.getInstance().getResidenceManager().getByName(event.getResidenceName()).getXZSize();
                 p.sendMessage(preMessage + "§A New size of §6" + event.getResidenceName() + "§A is:§6 " + totalSize);

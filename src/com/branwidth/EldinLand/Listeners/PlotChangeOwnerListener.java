@@ -57,14 +57,14 @@ public class PlotChangeOwnerListener implements Listener {
                     if (pNewName.equals(townOwner)) {
                         // land sold back to town
                         // take land from old owner
-                        Database.changePlayerCityLand(pOldUUID, -tileCount, pOldName);
+                        Database.setPlayerCityLand(pOldUUID, -tileCount, pOldName);
                         // do not give any to the new owner
                     } else {
                         // land sold to another player
                         // remove land from current owner
-                        Database.changePlayerCityLand(pOldUUID, -tileCount, pOldName);
+                        Database.setPlayerCityLand(pOldUUID, -tileCount, pOldName);
                         // give land to new owner
-                        Database.changePlayerCityLand(pNewUUID, tileCount, pNewName);
+                        Database.setPlayerCityLand(pNewUUID, tileCount, pNewName);
                         // remove land from city listing from old player
                         Database.changeCityPlot(townName, tileCount, pOldUUID, false);
                         // add land to city listing for new player
@@ -90,11 +90,11 @@ public class PlotChangeOwnerListener implements Listener {
                 long oldPlayerNewLandCount = oldPlayerOldLandCount - tileCount;
 
                 // remove wild land from old player
-                Database.changePlayerWildLand(pOldUUID, oldPlayerNewLandCount, worldNameFrm);
+                Database.setPlayerWildLand(pOldUUID, oldPlayerNewLandCount, worldNameFrm);
                 pOld.sendMessage(preMessage + "§A Removed §6" + tileCount + "§A tiles from " + StringUtils.capitalize(playerWorldReplaced) + " land.");
                 pOld.sendMessage(preMessage + "§A New " + StringUtils.capitalize(playerWorldReplaced) + " Land Count: §6" + oldPlayerNewLandCount);
                 // add wild land to new player
-                Database.changePlayerWildLand(pNewUUID, newPlayerNewLandCount, worldNameFrm);
+                Database.setPlayerWildLand(pNewUUID, newPlayerNewLandCount, worldNameFrm);
                 pNew.sendMessage(preMessage + "§A Added §6" + tileCount + "§A tiles to " + StringUtils.capitalize(playerWorldReplaced) + " land.");
                 pNew.sendMessage(preMessage + "§A New " + StringUtils.capitalize(playerWorldReplaced) + " Land Count: §6" + newPlayerNewLandCount);
             }

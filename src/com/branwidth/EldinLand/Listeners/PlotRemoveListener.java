@@ -37,7 +37,7 @@ public class PlotRemoveListener implements Listener {
                 if (p.getName().equals(event.getResidence().getOwner())) {
                     Long prevWildLand = RSland.getLong(playerWorld);
                     Long newWildLand = prevWildLand - plotArea;
-                    Database.changePlayerWildLand(pUUID, newWildLand, playerWorld);
+                    Database.setPlayerWildLand(pUUID, newWildLand, playerWorld);
                     p.sendMessage(preMessage + "§A Removed §6" + plotArea + "§A Tiles from " + StringUtils.capitalize(playerWorldReplaced) + " land");
                     p.sendMessage(String.valueOf(preMessage + "§A New " + StringUtils.capitalize(playerWorldReplaced) + " Land Count: §6" + newWildLand));
                 }
