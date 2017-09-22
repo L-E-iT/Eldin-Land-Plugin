@@ -59,6 +59,11 @@ public class PlotChangeOwnerListener implements Listener {
                         // take land from old owner
                         Database.setPlayerCityLand(pOldUUID, -tileCount, pOldName);
                         // do not give any to the new owner
+                    } else if (pOldName.equals(townOwner)) {
+                        // give land to new owner
+                        Database.setPlayerCityLand(pNewUUID, tileCount, pNewName);
+                        // add land to city listing for new player
+                        Database.changeCityPlot(townName, tileCount, pNewUUID, true);
                     } else {
                         // land sold to another player
                         // remove land from current owner
