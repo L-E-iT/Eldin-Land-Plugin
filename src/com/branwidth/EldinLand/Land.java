@@ -6,29 +6,26 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import java.sql.*;
-import java.util.UUID;
 
 public class Land implements CommandExecutor {
 
 
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        // Ensure that the MySQL database connection is established
-        MySQL.connect();
-        if (!MySQL.isConnected()) {
-            MySQL.connect();
+        // Ensure that the Database database connection is established
+        Database.connect();
+        if (!Database.isConnected()) {
+            Database.connect();
         }
 
-
         Player p = (Player) sender;
-        String pName = p.getUniqueId().toString().replace("-","");
+        String pUUID = p.getUniqueId().toString().replace("-","");
 
         String wildLand,cityLand,netherLand,endLand,totalLand;
 
-        if (MySQL.isConnected()) {
+        if (Database.isConnected()) {
             try {
                 // Prepare SQL statement
-                PreparedStatement ps = MySQL.getConnection().prepareStatement("select * from players WHERE uuid='" + pName + "'");
-                ResultSet rs = ps.executeQuery();
+                ResultSet rs = Database.getPlayerLand(pUUID);
                 while (rs.next()) {
                     // Send land information to user
                     wildLand = Integer.toString(rs.getInt("wild_count"));

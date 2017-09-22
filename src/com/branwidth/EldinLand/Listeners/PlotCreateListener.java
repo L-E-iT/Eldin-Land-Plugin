@@ -4,16 +4,13 @@ import com.bekvon.bukkit.residence.Residence;
 import com.bekvon.bukkit.residence.event.ResidenceCreationEvent;
 import com.bekvon.bukkit.residence.protection.ClaimedResidence;
 import com.bekvon.bukkit.residence.protection.CuboidArea;
+import com.branwidth.EldinLand.Database;
 import com.branwidth.EldinLand.Main;
-import com.branwidth.EldinLand.MySQL;
-import net.milkbowl.vault.economy.Economy;
-import org.apache.commons.lang.ObjectUtils;
 import org.apache.commons.lang.StringUtils;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import net.milkbowl.vault.*;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -25,10 +22,10 @@ public class PlotCreateListener implements Listener {
     @EventHandler
     public void onCreationEvent(ResidenceCreationEvent event) throws SQLException {
 
-        // Ensure that the MySQL database connection is established
-        MySQL.connect();
-        if (!MySQL.isConnected()) {
-            MySQL.connect();
+        // Ensure that the Database database connection is established
+        Database.connect();
+        if (!Database.isConnected()) {
+            Database.connect();
         }
 
 
@@ -48,7 +45,7 @@ public class PlotCreateListener implements Listener {
         String playerWorldReplaced = null;
         double playerBalance = Main.econ.getBalance(p);
 
-        String playerWorld = MySQL.getPlayerWorld(p.getWorld().getName());
+        String playerWorld = Database.getPlayerWorld(p.getWorld().getName());
 
         if (playerBalance < event.getResidence().getXZSize()*30) {
             event.setCancelled(true);
@@ -79,13 +76,13 @@ public class PlotCreateListener implements Listener {
         }
 
         if(!event.isCancelled()){
-            // MySQL code
-            if (!MySQL.isConnected()) {
-                MySQL.connect();
+            // Database code
+            if (!Database.isConnected()) {
+                Database.connect();
             }
-            if(MySQL.isConnected()) {
-//                PreparedStatement PSselect = MySQL.getConnection().prepareStatement("select * from players WHERE uuid='" + pUUID + "'");
-                ResultSet RSselect = MySQL.getPlayerLand(pUUID);
+            if(Database.isConnected()) {
+//                PreparedStatement PSselect = Database.getConnection().prepareStatement("select * from players WHERE uuid='" + pUUID + "'");
+                ResultSet RSselect = Database.getPlayerLand(pUUID);
                 if (RSselect == null) {
                     // get area of plot
                     Long plotArea = newArea.getSize();
@@ -93,12 +90,12 @@ public class PlotCreateListener implements Listener {
                     Long prevWildLand = 0L;
                     // get new value
                     Long newWildLand = prevWildLand + plotArea;
-                    // set MySQL statement
+                    // set Database statement
                     p.sendMessage(pUUID);
                     p.sendMessage(String.valueOf(newWildLand));
                     p.sendMessage(playerWorld);
-                    MySQL.changePlayerWildLand(pUUID, newWildLand, playerWorld);
-                    ResultSet RSWildLand = MySQL.getPlayerLand(pUUID);
+                    Database.changePlayerWildLand(pUUID, newWildLand, playerWorld);
+                    ResultSet RSWildLand = Database.getPlayerLand(pUUID);
                     // Send player new wild land values
                     if (playerWorld != null) {
                         playerWorldReplaced = playerWorld.replace("_count", "");
@@ -115,9 +112,9 @@ public class PlotCreateListener implements Listener {
                         Long prevWildLand = RSselect.getLong(playerWorld);
                         // get new value
                         Long newWildLand = prevWildLand + plotArea;
-                        // set MySQL statement
-                        MySQL.changePlayerWildLand(pUUID, newWildLand, playerWorld);
-                        ResultSet RSWildLand = MySQL.getPlayerLand(pUUID);
+                        // set Database statement
+                        Database.changePlayerWildLand(pUUID, newWildLand, playerWorld);
+                        ResultSet RSWildLand = Database.getPlayerLand(pUUID);
                         // Send player new wild land values
                         if (playerWorld != null) {
                             playerWorldReplaced = playerWorld.replace("_count", "");
