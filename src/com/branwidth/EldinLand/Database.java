@@ -263,21 +263,14 @@ public class Database {
     }
 
     // Check to see if a plot is registered as a city
-    public static Boolean getIsCity(String plotName) throws SQLException {
+    public static Boolean IsCity(String plotName) throws SQLException {
         int cityID = getCityID(plotName);
         // Statement for if a plot is a city
-        PreparedStatement psCityNames = Database.getConnection().prepareStatement(
-                "SELECT id FROM cities");
-        ResultSet rsCityNames = psCityNames.executeQuery();
-        // for each row in the cities table
-        while (rsCityNames.next()) {
-            // Get city name and check to current plot name
-            if (rsCityNames.getString("id").equals(cityID)) {
-                // return true if it exists
-                return true;
-            }
+        if (cityID == 0) {
+            return false;
+        } else {
+            return true;
         }
-        return false;
     }
 
     public static int getPlayerCityPlotAmount(int playerID, int cityID) throws SQLException {
@@ -298,11 +291,12 @@ public class Database {
 
     }
 
+    // Get City ID from Composition Table
     public static int getCityID(String plotName) {
         // May not be needed.
         try {
             // Get city ID from cities composition table
-            PreparedStatement psCheckPlots = Database.getConnection().prepareStatement("SELECT id FROM city_composition_lookup WHERE residence_name = ?");
+            PreparedStatement psCheckPlots = Database.getConnection().prepareStatement("SELECT city_id FROM city_composition_lookup WHERE residence_name = ?");
             psCheckPlots.setString(1, plotName);
 
             ResultSet rsCheckPlots = psCheckPlots.executeQuery();
@@ -311,6 +305,25 @@ public class Database {
         } catch (Exception e) {
             return 0;
         }
+    }
+
+    // Get is a user is an owner of a town
+    public static int getIsTownOwner(String pUUID) throws SQLException {
+        // get set query
+        PreparedStatement PSisTownOwner = Database.getConnection().prepareStatement("SELECT isTownOwner FROM players WHERE UUID = ?");
+        PSisTownOwner.setString(1, pUUID);
+
+        // get results from query
+        ResultSet RSisTownOwner = PSisTownOwner.executeQuery();
+        if (RSisTownOwner.isBeforeFirst()) {
+            return  RSisTownOwner.getInt("isTownOwner");
+        } else {
+            return 0;
+        }
+    }
+
+    public static void setUsersAsOwners() {
+
     }
 
 }
