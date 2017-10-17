@@ -12,6 +12,7 @@ public class Land implements CommandExecutor {
 
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         // Ensure that the Database database connection is established
+        // Connect if not connected
         Database.connect();
         if (!Database.isConnected()) {
             Database.connect();
