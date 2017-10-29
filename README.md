@@ -1,5 +1,4 @@
 # Eldin Land Plugin
---
 Land plugin tracking for the World Of Eldin MC Server at www.worldofeldin.com
 
 ## Requirements:
