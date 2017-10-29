@@ -16,3 +16,6 @@ Land plugin tracking for the World Of Eldin MC Server at www.worldofeldin.com
 * /Rank
   * Sets a users rank depending on land amount
   * Usage: /rank (wild, city, end, etc) 
+* /LandAdmin
+  * Used for all administrative commands
+  * /LandAdmin to get a list of commands and descriptions
