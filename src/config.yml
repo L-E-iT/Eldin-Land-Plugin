@@ -14,3 +14,4 @@ DistanceConfig:
 
 MessagesConfig:
   PreMessage: §6[Eldin Land]
+  NoPermission: §4Insufficient Permissions

@@ -28,6 +28,7 @@ public class Main extends JavaPlugin {
         // Specifying commands for the plugin
         getCommand("Land").setExecutor(new Land());
         getCommand("Rank").setExecutor(new Rank());
+        getCommand("LandAdmin").setExecutor(new LandAdmin());
         //Register Listeners
         getServer().getPluginManager().registerEvents(new PlotCreateListener(), this);
         getServer().getPluginManager().registerEvents(new PlotRemoveListener(), this);
