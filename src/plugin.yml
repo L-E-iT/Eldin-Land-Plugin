@@ -11,3 +11,8 @@ commands:
       Rank:
               description: Gives the player a rank
               usage: /rank [land type]
+      LandAdmin:
+              description: Used for Admin Commands
+              usage: /landadmin
+              permission: EldinLand.Admin
+              permission-message: You don't have permission for that...
