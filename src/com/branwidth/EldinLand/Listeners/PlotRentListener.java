@@ -53,7 +53,7 @@ public class PlotRentListener implements Listener {
                     p.sendMessage(ChatColor.RED + "You do not have enough Trade Bars!");
                 } else {
                     // Change player city land count
-                    Database.setPlayerCityLand(pUUID, plotSize, pName);
+                    Database.changePlayerCityLand(pUUID, plotSize, pName);
                     p.sendMessage(preMessage + "§A Added §6" + plotSize + "§A tiles to §6City§A land");
                     Long totalCityLand = playerCityLand + plotSize;
                     p.sendMessage(preMessage + "§A New City tile count: §6" + totalCityLand);
@@ -63,7 +63,7 @@ public class PlotRentListener implements Listener {
             } else if (rentType.equals(UNRENT) || rentType.equals(RENT_EXPIRE) || rentType.equals(UNRENTABLE)) {
                 // Change player city land count
                 if (!plotOwner.equals(p.getPlayer().getName())) {
-                    Database.setPlayerCityLand(pUUID, -plotSize, pName);
+                    Database.changePlayerCityLand(pUUID, -plotSize, pName);
                     Database.changeCityPlot(townName, plotSize, pUUID, false);
                     if (p.isOnline()) {
                         p.sendMessage(preMessage + "§A Removed §6" + plotSize + "§A tiles from §6 City §A land");

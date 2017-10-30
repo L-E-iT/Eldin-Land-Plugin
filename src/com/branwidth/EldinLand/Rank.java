@@ -94,7 +94,7 @@ public class Rank implements CommandExecutor {
                         }
                         break;
                     case "town":
-                        if (wildLand >= 100 && Database.isTownOwner()) {
+                        if (wildLand >= 100 && Database.getIsTownOwner(pUUID)) {
                             getPlayerTownRank(wildLand, pPex, p, pGroups);
                         } else {
                             p.sendMessage(preMessage + "§A You don't own a §6Town§A!");
@@ -278,5 +278,38 @@ public class Rank implements CommandExecutor {
     }
 
     private void getPlayerTownRank(int playerLand, PermissionUser pPex, Player p, List<String> pGroups) {
+        if (playerLand >= 3600 && playerLand < 10000) {
+            for (String n : pGroups) {
+                pPex.removeGroup(n);
+            }
+            pPex.addGroup("Baron");
+            p.sendMessage(preMessage + "§A Rank updated to: §6Baron");
+        } else if (playerLand >= 10000 && playerLand < 30625) {
+            for (String n : pGroups) {
+                pPex.removeGroup(n);
+            }
+            pPex.addGroup("Duke");
+            p.sendMessage(preMessage + "§A Rank updated to: §6Duke");
+        } else if (playerLand >= 30625 && playerLand < 62500) {
+            for (String n : pGroups) {
+                pPex.removeGroup(n);
+            }
+            pPex.addGroup("Prince");
+            p.sendMessage(preMessage + "§A Rank updated to: §6Prince");
+        } else if (playerLand >= 62500 && playerLand < 125000) {
+            for (String n : pGroups) {
+                pPex.removeGroup(n);
+            }
+            pPex.addGroup("King");
+            p.sendMessage(preMessage + "§A Rank updated to: §6King");
+        } else if (playerLand >= 125000) {
+            for (String n : pGroups) {
+                pPex.removeGroup(n);
+            }
+            pPex.addGroup("DEmperor");
+            p.sendMessage(preMessage + "§A Rank updated to: §6Emperor");
+        } else {
+            p.sendMessage(preMessage + "§A You do not have enough city land!");
+        }
     }
 }

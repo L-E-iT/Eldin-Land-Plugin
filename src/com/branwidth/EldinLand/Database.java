@@ -44,14 +44,17 @@ public class Database {
         }
     }
 
+    // check if plugin is connected to the Database
     public static boolean isConnected() {
         return (conn != null);
     }
 
+    // connect to the Database
     public static Connection getConnection() {
         return conn;
     }
 
+    // get the players total land
     public static ResultSet getPlayerLand(String uuid) throws SQLException {
         // get set query
         PreparedStatement PSland = Database.getConnection().prepareStatement("SELECT * FROM players WHERE UUID = ?");
@@ -67,6 +70,8 @@ public class Database {
         }
     }
 
+    // get the world that the player is in
+    // Not a DB command, needs to be moved later
     public static String getPlayerWorld(String playerWorldName) {
         switch (playerWorldName) {
             case "world":
@@ -80,6 +85,8 @@ public class Database {
         }
     }
 
+    // add or remove a players wild land tiles
+    // Note for future, change to add and remove method to keep everything clean
     public static void setPlayerWildLand(String pUUID, Long Count, String playerWorld) throws SQLException {
         StringBuilder newUUID = new StringBuilder(pUUID);
         newUUID.insert(8,"-");
@@ -131,6 +138,7 @@ public class Database {
         }
     }
 
+    // Get a player's ID in the DB
     private static int getPlayerID(String pUUID) throws SQLException {
         try {
             // get players ID value from table
@@ -146,7 +154,9 @@ public class Database {
         }
     }
 
-    public static void setPlayerCityLand(String pUUID, Long tileCount, String playerName) throws SQLException {
+    // add or remove players city land tiles
+    // Note for future, change to add and remove method to keep everything clean
+    public static void changePlayerCityLand(String pUUID, Long tileCount, String playerName) throws SQLException {
 
         if (getPlayerID(pUUID) == 0) {
 
@@ -168,6 +178,7 @@ public class Database {
         }
     }
 
+    //Change a player's city land count
     public static void changeCityPlot(String plotName, Long tileCount, String pUUID, Boolean addLand) throws SQLException {
         int playerID = getPlayerID(pUUID);
         Boolean ownsLand = false;
@@ -251,6 +262,7 @@ public class Database {
         }
     }
 
+    // Change a city size
     public static void changeCitySize(String pUUID, Long Count, String playerWorld, String plotName) throws SQLException {
         // Set Database statement for adding city land to a town (Town expansion)
         int cityID = getCityID(plotName);
@@ -263,7 +275,7 @@ public class Database {
     }
 
     // Check to see if a plot is registered as a city
-    public static Boolean IsCity(String plotName) throws SQLException {
+    public static Boolean isPlotACity(String plotName) throws SQLException {
         int cityID = getCityID(plotName);
         // Statement for if a plot is a city
         if (cityID == 0) {
@@ -271,6 +283,12 @@ public class Database {
         } else {
             return true;
         }
+    }
+
+    // used to set a plot as a city plot in the composition table
+    public static void setPlotAsCity(String plotName, int cityID) throws SQLException {
+        // sets a plot as a city plot
+        // inserts plot name and cityID into table
     }
 
     public static int getPlayerCityPlotAmount(int playerID, int cityID) throws SQLException {
@@ -308,7 +326,7 @@ public class Database {
     }
 
     // Get is a user is an owner of a town
-    public static int getIsTownOwner(String pUUID) throws SQLException {
+    public static boolean getIsTownOwner(String pUUID) throws SQLException {
         // get set query
         PreparedStatement PSisTownOwner = Database.getConnection().prepareStatement("SELECT isTownOwner FROM players WHERE UUID = ?");
         PSisTownOwner.setString(1, pUUID);
@@ -316,14 +334,29 @@ public class Database {
         // get results from query
         ResultSet RSisTownOwner = PSisTownOwner.executeQuery();
         if (RSisTownOwner.isBeforeFirst()) {
-            return  RSisTownOwner.getInt("isTownOwner");
+            if (RSisTownOwner.getInt("isTownOwner") == 1) {
+                // User is owner
+                return true;
+            } else {
+                // User is not owner
+                return false;
+            }
         } else {
-            return 0;
+            // query failed
+            return false;
         }
     }
 
-    public static void setUsersAsOwners() {
-        
+    // Set a user as a town owner in the database
+    public static void setUserAsTownOwner(String pUUID) {
+        // Get uuid
+        // set isTownOwner flag to 1
+    }
+
+    // remove a user as a town owner in the database
+    public static void setUserAsNotTownOwner(String pUUID) {
+        // Get uuid
+        // set isTownOwner flag to 0
     }
 
 }

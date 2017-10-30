@@ -14,7 +14,8 @@ public class LandAdmin implements CommandExecutor {
         if (player.hasPermission("EldinLand.Admin")) {
             player.sendMessage("§6|-- /LandAdmin Help --|");
             player.sendMessage("§aList of commands:");
-            player.sendMessage("Placeholder");
+            player.sendMessage("§8|============================================|");
+            player.sendMessage("§a/LandAdmin SetOwners | §6Set all town owners to have the isTownOwner flag in DB");
         } else {
             player.sendMessage(noPermMessage);
         }
